@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  background: #1f2937;
+  color: #1a1a1a;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: #1f2937;
+  color: #fff;
+}
+
+.app__bar h1 {
+  font-size: 18px;
+  margin: 0 12px 0 0;
+}
+
+.app__bar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.app__bar select,
+.app__bar input[type='file'],
+.app__bar input[type='text'] {
+  padding: 4px 6px;
+  border-radius: 4px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: #fff;
+}
+
+.app__bar button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid #475569;
+  background: #334155;
+  color: #fff;
+  cursor: pointer;
+}
+
+.app__bar button:hover {
+  background: #475569;
+}
+
+.app__viewer {
+  flex: 1 1 0;
+  min-height: 0;
+  border-top: 1px solid #475569;
+  border-bottom: 1px solid #475569;
+  background: #0f172a;
+}
+
+.app__status {
+  flex: none;
+  font-size: 12px;
+  padding: 4px 16px;
+  background: #1f2937;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewer-wrap {
+  height: 100%;
+}
+
+.accent-blue .vue-pdfx-viewer {
+  --vue-pdfx-color-primary: #2f6bff;
+  --vue-pdfx-color-primary-hover: #1f54da;
+  --vue-pdfx-color-primary-contrast: #ffffff;
+}
+
+.watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 64px;
+  font-weight: 800;
+  color: rgba(120, 120, 120, 0.2);
+  transform: rotate(-30deg);
+  user-select: none;
+}
