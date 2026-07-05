@@ -29,4 +29,4 @@ export { createVueI18nAdapter } from './i18n/adapter'
 export { ar, de, en, es, fr, he, ja, ko, zh } from './i18n/locales'
 
 export { VuePdfx, default } from './plugin'
-export { default as PdfViewer } from './components/PdfViewer.vue'
+export { PdfViewer } from './components/PdfViewer.lazy'
