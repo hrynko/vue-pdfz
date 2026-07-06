@@ -7,6 +7,8 @@ A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 [![GitHub Stars](https://img.shields.io/github/stars/hrynko/vue-pdfx?style=flat)](https://github.com/hrynko/vue-pdfx)
 [![License](https://img.shields.io/npm/l/vue-pdfx?style=flat)](https://github.com/hrynko/vue-pdfx/blob/main/LICENSE)
 
+<img src=".github/assets/screenshot.png" alt="vue-pdfx screenshot" width="100%">
+
 ## Features
 
 - 🧭 **Navigation** – UI and keyboard navigation, `continuous` / `single` / `facing` layouts.
