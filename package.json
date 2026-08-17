@@ -50,7 +50,8 @@
     "demo:samples": "node playground/generate-samples.mjs",
     "demo:dev": "node playground/generate-samples.mjs && vite --config playground/vite.config.ts",
     "demo:build": "node playground/generate-samples.mjs && vite build --config playground/vite.config.ts",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "prepare": "husky"
   },
   "dependencies": {
     "vue-pdf-embed": "^2.1.5"
@@ -64,6 +65,8 @@
     "eslint": "^9.17.0",
     "eslint-plugin-vue": "^9.32.0",
     "happy-dom": "^15.11.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
     "pdfjs-dist": "^5.7.284",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",
