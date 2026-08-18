@@ -8,7 +8,7 @@ import type {
   ThemeTokens,
 } from './types'
 
-export interface VuePdfxConfig {
+export interface VuePdfzConfig {
   i18nAdapter?: I18nAdapter
   locale?: string
   messages?: LocaleMessagesMap
@@ -17,8 +17,8 @@ export interface VuePdfxConfig {
   themeTokens?: ThemeTokens
 }
 
-export const VuePdfxConfigKey: InjectionKey<VuePdfxConfig> = Symbol('vue-pdfx:config')
+export const VuePdfzConfigKey: InjectionKey<VuePdfzConfig> = Symbol('vue-pdfz:config')
 
-export function useVuePdfxConfig(): VuePdfxConfig {
-  return inject(VuePdfxConfigKey, {})
+export function useVuePdfzConfig(): VuePdfzConfig {
+  return inject(VuePdfzConfigKey, {})
 }

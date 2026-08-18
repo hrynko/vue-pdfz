@@ -21,12 +21,12 @@ export {
   type SearchResult,
   type ThemeMode,
   type ThemeTokens,
-  type VuePdfxPluginOptions,
+  type VuePdfzPluginOptions,
   type ZoomValue,
 } from './types'
 
 export { createVueI18nAdapter } from './i18n/adapter'
 export { ar, de, en, es, fr, he, ja, ko, zh } from './i18n/locales'
 
-export { VuePdfx, default } from './plugin'
+export { VuePdfz, default } from './plugin'
 export { PdfViewer } from './components/PdfViewer.lazy'

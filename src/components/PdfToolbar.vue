@@ -171,14 +171,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-pdfx-toolbar" :aria-label="t('toolbarLabel')" role="toolbar">
-    <div class="vue-pdfx-toolbar__start">
+  <div class="vue-pdfz-toolbar" :aria-label="t('toolbarLabel')" role="toolbar">
+    <div class="vue-pdfz-toolbar__start">
       <slot name="toolbar-start">
         <button
           v-if="showThumbnailsToggle"
           type="button"
-          class="vue-pdfx-btn"
-          :class="{ 'vue-pdfx-btn--active': thumbnailsOpen }"
+          class="vue-pdfz-btn"
+          :class="{ 'vue-pdfz-btn--active': thumbnailsOpen }"
           :aria-label="t('toggleThumbnails')"
           :aria-pressed="thumbnailsOpen"
           :disabled="!ready"
@@ -190,12 +190,12 @@ onBeforeUnmount(() => {
           </slot>
         </button>
 
-        <Transition name="vue-pdfx-toolbar-fade">
-          <span v-if="compact && ready" class="vue-pdfx-toolbar__compact-nav">
+        <Transition name="vue-pdfz-toolbar-fade">
+          <span v-if="compact && ready" class="vue-pdfz-toolbar__compact-nav">
             <button
               v-if="layout === 'single'"
               type="button"
-              class="vue-pdfx-btn vue-pdfx-btn--nav"
+              class="vue-pdfz-btn vue-pdfz-btn--nav"
               :aria-label="t('previousPage')"
               :disabled="currentPage <= 1"
               :title="t('previousPage')"
@@ -206,14 +206,14 @@ onBeforeUnmount(() => {
               </slot>
             </button>
 
-            <span class="vue-pdfx-toolbar__compact-count">
+            <span class="vue-pdfz-toolbar__compact-count">
               {{ formatNumber(currentPage) }} / {{ formatNumber(pageCount) }}
             </span>
 
             <button
               v-if="layout === 'single'"
               type="button"
-              class="vue-pdfx-btn vue-pdfx-btn--nav"
+              class="vue-pdfz-btn vue-pdfz-btn--nav"
               :aria-label="t('nextPage')"
               :disabled="currentPage >= pageCount"
               :title="t('nextPage')"
@@ -228,13 +228,13 @@ onBeforeUnmount(() => {
       </slot>
     </div>
 
-    <Transition name="vue-pdfx-toolbar-fade">
-      <div v-if="!compact && ready" class="vue-pdfx-toolbar__center">
+    <Transition name="vue-pdfz-toolbar-fade">
+      <div v-if="!compact && ready" class="vue-pdfz-toolbar__center">
         <slot name="toolbar-center">
-          <div class="vue-pdfx-toolbar__group">
+          <div class="vue-pdfz-toolbar__group">
             <button
               type="button"
-              class="vue-pdfx-btn vue-pdfx-btn--nav"
+              class="vue-pdfz-btn vue-pdfz-btn--nav"
               :aria-label="t('previousPage')"
               :disabled="currentPage <= 1"
               :title="t('previousPage')"
@@ -245,10 +245,10 @@ onBeforeUnmount(() => {
               </slot>
             </button>
 
-            <span class="vue-pdfx-toolbar__pagebox">
+            <span class="vue-pdfz-toolbar__pagebox">
               <input
                 type="text"
-                class="vue-pdfx-input vue-pdfx-page-input"
+                class="vue-pdfz-input vue-pdfz-page-input"
                 :aria-label="t('goToPage')"
                 :maxlength="String(Math.max(1, pageCount)).length"
                 :value="pageInput"
@@ -257,12 +257,12 @@ onBeforeUnmount(() => {
                 @input="handlePageInput"
                 @keydown.enter="handlePageNavigate"
               />
-              <span class="vue-pdfx-page-total">/ {{ formatNumber(pageCount) }}</span>
+              <span class="vue-pdfz-page-total">/ {{ formatNumber(pageCount) }}</span>
             </span>
 
             <button
               type="button"
-              class="vue-pdfx-btn vue-pdfx-btn--nav"
+              class="vue-pdfz-btn vue-pdfz-btn--nav"
               :aria-label="t('nextPage')"
               :disabled="currentPage >= pageCount"
               :title="t('nextPage')"
@@ -274,12 +274,12 @@ onBeforeUnmount(() => {
             </button>
           </div>
 
-          <span class="vue-pdfx-toolbar__divider" />
+          <span class="vue-pdfz-toolbar__divider" />
 
-          <div class="vue-pdfx-toolbar__group">
+          <div class="vue-pdfz-toolbar__group">
             <button
               type="button"
-              class="vue-pdfx-btn"
+              class="vue-pdfz-btn"
               :aria-label="t('zoomOut')"
               :disabled="!canZoomOut"
               :title="t('zoomOut')"
@@ -291,7 +291,7 @@ onBeforeUnmount(() => {
             </button>
 
             <select
-              class="vue-pdfx-select vue-pdfx-zoom-select"
+              class="vue-pdfz-select vue-pdfz-zoom-select"
               :aria-label="t('zoomLevel')"
               :title="zoomPercentLabel"
               :value="zoomSelectValue"
@@ -314,7 +314,7 @@ onBeforeUnmount(() => {
 
             <button
               type="button"
-              class="vue-pdfx-btn"
+              class="vue-pdfz-btn"
               :aria-label="t('zoomIn')"
               :disabled="!canZoomIn"
               :title="t('zoomIn')"
@@ -326,11 +326,11 @@ onBeforeUnmount(() => {
             </button>
           </div>
 
-          <span class="vue-pdfx-toolbar__divider" />
+          <span class="vue-pdfz-toolbar__divider" />
 
           <button
             type="button"
-            class="vue-pdfx-btn"
+            class="vue-pdfz-btn"
             :aria-label="t('rotateClockwise')"
             :title="t('rotateClockwise')"
             @click="emit('rotate-cw')"
@@ -343,15 +343,15 @@ onBeforeUnmount(() => {
       </div>
     </Transition>
 
-    <div class="vue-pdfx-toolbar__end">
+    <div class="vue-pdfz-toolbar__end">
       <slot name="toolbar-end">
-        <Transition name="vue-pdfx-toolbar-fade">
-          <div v-if="ready" class="vue-pdfx-toolbar__end-actions">
+        <Transition name="vue-pdfz-toolbar-fade">
+          <div v-if="ready" class="vue-pdfz-toolbar__end-actions">
             <button
               v-if="enableSearch"
               type="button"
-              class="vue-pdfx-btn"
-              :class="{ 'vue-pdfx-btn--active': searchActive }"
+              class="vue-pdfz-btn"
+              :class="{ 'vue-pdfz-btn--active': searchActive }"
               :aria-label="t('search')"
               :aria-pressed="searchActive"
               :title="t('search')"
@@ -366,7 +366,7 @@ onBeforeUnmount(() => {
               <button
                 v-if="enablePrint"
                 type="button"
-                class="vue-pdfx-btn"
+                class="vue-pdfz-btn"
                 :aria-label="t('print')"
                 :disabled="printing"
                 :title="t('print')"
@@ -380,7 +380,7 @@ onBeforeUnmount(() => {
               <button
                 v-if="enableDownload"
                 type="button"
-                class="vue-pdfx-btn"
+                class="vue-pdfz-btn"
                 :aria-label="t('download')"
                 :disabled="downloading"
                 :title="t('download')"
@@ -392,11 +392,11 @@ onBeforeUnmount(() => {
               </button>
             </template>
 
-            <div v-else ref="overflowWrap" class="vue-pdfx-overflow-wrap">
+            <div v-else ref="overflowWrap" class="vue-pdfz-overflow-wrap">
               <button
                 type="button"
-                class="vue-pdfx-btn"
-                :class="{ 'vue-pdfx-btn--active': overflowOpen }"
+                class="vue-pdfz-btn"
+                :class="{ 'vue-pdfz-btn--active': overflowOpen }"
                 :aria-expanded="overflowOpen"
                 aria-haspopup="menu"
                 :aria-label="t('more')"
@@ -406,16 +406,16 @@ onBeforeUnmount(() => {
                 <MoreIcon />
               </button>
 
-              <Transition name="vue-pdfx-search">
+              <Transition name="vue-pdfz-search">
                 <div
                   v-if="overflowOpen"
-                  class="vue-pdfx-overflow"
+                  class="vue-pdfz-overflow"
                   :aria-label="t('more')"
                   role="menu"
                 >
                   <button
                     type="button"
-                    class="vue-pdfx-overflow__item"
+                    class="vue-pdfz-overflow__item"
                     role="menuitem"
                     @click="withOverflowClose(() => emit('set-zoom', 'page-width'))"
                   >
@@ -425,7 +425,7 @@ onBeforeUnmount(() => {
 
                   <button
                     type="button"
-                    class="vue-pdfx-overflow__item"
+                    class="vue-pdfz-overflow__item"
                     :disabled="!canZoomIn"
                     role="menuitem"
                     @click="withOverflowClose(() => emit('zoom-in'))"
@@ -436,7 +436,7 @@ onBeforeUnmount(() => {
 
                   <button
                     type="button"
-                    class="vue-pdfx-overflow__item"
+                    class="vue-pdfz-overflow__item"
                     :disabled="!canZoomOut"
                     role="menuitem"
                     @click="withOverflowClose(() => emit('zoom-out'))"
@@ -447,7 +447,7 @@ onBeforeUnmount(() => {
 
                   <button
                     type="button"
-                    class="vue-pdfx-overflow__item"
+                    class="vue-pdfz-overflow__item"
                     role="menuitem"
                     @click="withOverflowClose(() => emit('rotate-cw'))"
                   >
@@ -456,12 +456,12 @@ onBeforeUnmount(() => {
                   </button>
 
                   <template v-if="enablePrint || enableDownload">
-                    <span class="vue-pdfx-overflow__divider" />
+                    <span class="vue-pdfz-overflow__divider" />
 
                     <button
                       v-if="enableDownload"
                       type="button"
-                      class="vue-pdfx-overflow__item"
+                      class="vue-pdfz-overflow__item"
                       :disabled="downloading"
                       role="menuitem"
                       @click="withOverflowClose(() => emit('download'))"
@@ -473,7 +473,7 @@ onBeforeUnmount(() => {
                     <button
                       v-if="enablePrint"
                       type="button"
-                      class="vue-pdfx-overflow__item"
+                      class="vue-pdfz-overflow__item"
                       :disabled="printing"
                       role="menuitem"
                       @click="withOverflowClose(() => emit('print'))"

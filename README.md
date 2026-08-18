@@ -1,13 +1,13 @@
-# vue-pdfx
+# vue-pdfz
 
 A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 
-[![npm Version](https://img.shields.io/npm/v/vue-pdfx?style=flat)](https://npmjs.com/package/vue-pdfx)
-[![npm Downloads](https://img.shields.io/npm/dm/vue-pdfx?style=flat)](https://npmjs.com/package/vue-pdfx)
-[![GitHub Stars](https://img.shields.io/github/stars/hrynko/vue-pdfx?style=flat)](https://github.com/hrynko/vue-pdfx)
-[![License](https://img.shields.io/npm/l/vue-pdfx?style=flat)](https://github.com/hrynko/vue-pdfx/blob/main/LICENSE)
+[![npm Version](https://img.shields.io/npm/v/vue-pdfz?style=flat)](https://npmjs.com/package/vue-pdfz)
+[![npm Downloads](https://img.shields.io/npm/dm/vue-pdfz?style=flat)](https://npmjs.com/package/vue-pdfz)
+[![GitHub Stars](https://img.shields.io/github/stars/hrynko/vue-pdfz?style=flat)](https://github.com/hrynko/vue-pdfz)
+[![License](https://img.shields.io/npm/l/vue-pdfz?style=flat)](https://github.com/hrynko/vue-pdfz/blob/main/LICENSE)
 
-<img src=".github/assets/screenshot.png" alt="vue-pdfx screenshot" width="100%">
+<img src=".github/assets/screenshot.png" alt="vue-pdfz screenshot" width="100%">
 
 ## Features
 
@@ -28,15 +28,15 @@ A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 ## Installation
 
 ```bash
-npm install vue-pdfx
+npm install vue-pdfz
 ```
 
 ## Usage
 
 ```vue
 <script setup>
-import { PdfViewer } from 'vue-pdfx'
-import 'vue-pdfx/style.css'
+import { PdfViewer } from 'vue-pdfz'
+import 'vue-pdfz/style.css'
 </script>
 
 <template>
@@ -73,8 +73,8 @@ import 'vue-pdfx/style.css'
 | `textLayer`          | `boolean`                                                 | `true`                  | Render the selectable text layer (required for search).                     |
 | `theme`              | `'light' \| 'dark' \| 'auto'`                             | `'light'`               | Color-scheme mode.                                                          |
 | `themeTokens`        | `ThemeTokens`                                             | –                       | Design-token overrides.                                                     |
-| `thumbnailWidth`     | `number`                                                  | `120`                   | Thumbnail render width in px.                                              |
-| `virtualization`     | `boolean`                                                 | `false`                 | Windowed page rendering for large documents.                                  |
+| `thumbnailWidth`     | `number`                                                  | `120`                   | Thumbnail render width in px.                                               |
+| `virtualization`     | `boolean`                                                 | `false`                 | Windowed page rendering for large documents.                                |
 | `zoom`               | `number \| 'auto' \| 'page-fit' \| 'page-width'`          | `'auto'`                | Zoom level or fit mode. `v-model:zoom`.                                     |
 | `zoomStep`           | `number`                                                  | `0.25`                  | Step for zooming in/out.                                                    |
 
@@ -145,9 +145,9 @@ Resolution order for any string: per-component `messages` → plugin `messages` 
 ### Add a locale
 
 ```ts
-import { PdfViewer } from 'vue-pdfx'
-import type { LocaleMessages } from 'vue-pdfx'
-import { en } from 'vue-pdfx/locales/en'
+import { PdfViewer } from 'vue-pdfz'
+import type { LocaleMessages } from 'vue-pdfz'
+import { en } from 'vue-pdfz/locales/en'
 
 const it: LocaleMessages = { ...en, nextPage: 'Pagina successiva', /* ... */ }
 
@@ -155,19 +155,19 @@ const it: LocaleMessages = { ...en, nextPage: 'Pagina successiva', /* ... */ }
 <PdfViewer locale="it" :messages="it" />
 
 // Or app-wide via the plugin:
-app.use(VuePdfx, { locale: 'it', messages: { it } })
+app.use(VuePdfz, { locale: 'it', messages: { it } })
 ```
 
 ### Add an optional `vue-i18n` adapter
 
-With an adapter to a host `vue-i18n` instance, keys resolve as `${prefix}${key}` (the default prefix is `vuePdfx.`), with unresolved keys falling back to the built-in bundle.
+With an adapter to a host `vue-i18n` instance, keys resolve as `${prefix}${key}` (the default prefix is `vuePdfz.`), with unresolved keys falling back to the built-in bundle.
 
 ```ts
 import { useI18n } from 'vue-i18n'
-import { createVueI18nAdapter } from 'vue-pdfx'
+import { createVueI18nAdapter } from 'vue-pdfz'
 
 const i18n = useI18n()
-app.use(VuePdfx, { i18nAdapter: createVueI18nAdapter(i18n) })
+app.use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n) })
 ```
 
 ## License

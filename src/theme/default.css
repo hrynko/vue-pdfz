@@ -1,11 +1,11 @@
 @import './tokens.css';
 
-.vue-pdfx-viewer,
-.vue-pdfx-viewer * {
+.vue-pdfz-viewer,
+.vue-pdfz-viewer * {
   box-sizing: border-box;
 }
 
-.vue-pdfx-viewer {
+.vue-pdfz-viewer {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,152 +13,152 @@
   block-size: 100%;
   min-block-size: 0;
   overflow: hidden;
-  font-family: var(--vue-pdfx-font-family);
-  font-size: var(--vue-pdfx-font-size);
-  color: var(--vue-pdfx-color-text);
-  background: var(--vue-pdfx-color-bg);
+  font-family: var(--vue-pdfz-font-family);
+  font-size: var(--vue-pdfz-font-size);
+  color: var(--vue-pdfz-color-text);
+  background: var(--vue-pdfz-color-bg);
 }
 
 /* ------------------------------------------------------------------ *
  * Toolbar
  * ------------------------------------------------------------------ */
-.vue-pdfx-toolbar {
+.vue-pdfz-toolbar {
   position: relative;
   z-index: 11;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--vue-pdfx-spacing);
-  min-block-size: var(--vue-pdfx-toolbar-height);
-  padding-inline: var(--vue-pdfx-spacing);
-  color: var(--vue-pdfx-color-toolbar-text);
-  background: var(--vue-pdfx-color-toolbar-bg);
-  border-block-end: 1px solid var(--vue-pdfx-color-border);
-  box-shadow: var(--vue-pdfx-shadow);
+  gap: var(--vue-pdfz-spacing);
+  min-block-size: var(--vue-pdfz-toolbar-height);
+  padding-inline: var(--vue-pdfz-spacing);
+  color: var(--vue-pdfz-color-toolbar-text);
+  background: var(--vue-pdfz-color-toolbar-bg);
+  border-block-end: 1px solid var(--vue-pdfz-color-border);
+  box-shadow: var(--vue-pdfz-shadow);
 }
 
-.vue-pdfx-toolbar__group {
+.vue-pdfz-toolbar__group {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.vue-pdfx-toolbar__start {
+.vue-pdfz-toolbar__start {
   display: flex;
   align-items: center;
-  gap: var(--vue-pdfx-spacing);
+  gap: var(--vue-pdfz-spacing);
   margin-inline-end: auto;
 }
 
-.vue-pdfx-toolbar__center {
+.vue-pdfz-toolbar__center {
   display: flex;
   align-items: center;
-  gap: var(--vue-pdfx-spacing);
+  gap: var(--vue-pdfz-spacing);
 }
 
-.vue-pdfx-toolbar__end {
+.vue-pdfz-toolbar__end {
   display: flex;
   align-items: center;
-  gap: var(--vue-pdfx-spacing);
+  gap: var(--vue-pdfz-spacing);
   margin-inline-start: auto;
 }
 
-.vue-pdfx-toolbar__divider {
+.vue-pdfz-toolbar__divider {
   align-self: stretch;
   inline-size: 1px;
   margin-block: 6px;
-  background: var(--vue-pdfx-color-border);
+  background: var(--vue-pdfz-color-border);
 }
 
-.vue-pdfx-toolbar__compact-nav {
+.vue-pdfz-toolbar__compact-nav {
   display: flex;
   align-items: center;
   gap: 2px;
 }
 
-.vue-pdfx-toolbar__compact-count {
+.vue-pdfz-toolbar__compact-count {
   padding-inline: 4px;
   font: inherit;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  color: var(--vue-pdfx-color-text-secondary);
+  color: var(--vue-pdfz-color-text-secondary);
 }
 
-.vue-pdfx-zoom-select {
+.vue-pdfz-zoom-select {
   min-inline-size: 5.5em;
 }
 
-.vue-pdfx-toolbar__end-actions {
+.vue-pdfz-toolbar__end-actions {
   display: flex;
   align-items: center;
-  gap: var(--vue-pdfx-spacing);
+  gap: var(--vue-pdfz-spacing);
 }
 
-.vue-pdfx-toolbar-fade-enter-active,
-.vue-pdfx-toolbar-fade-leave-active {
-  transition: opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+.vue-pdfz-toolbar-fade-enter-active,
+.vue-pdfz-toolbar-fade-leave-active {
+  transition: opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-toolbar-fade-enter-from,
-.vue-pdfx-toolbar-fade-leave-to {
+.vue-pdfz-toolbar-fade-enter-from,
+.vue-pdfz-toolbar-fade-leave-to {
   opacity: 0;
 }
 
 /* ------------------------------------------------------------------ *
  * Buttons & controls
  * ------------------------------------------------------------------ */
-.vue-pdfx-btn {
+.vue-pdfz-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  min-inline-size: var(--vue-pdfx-control-size);
-  block-size: var(--vue-pdfx-control-size);
+  min-inline-size: var(--vue-pdfz-control-size);
+  block-size: var(--vue-pdfz-control-size);
   padding-inline: 6px;
   font: inherit;
   line-height: 1;
-  color: var(--vue-pdfx-color-text-secondary);
+  color: var(--vue-pdfz-color-text-secondary);
   background: transparent;
   border: 1px solid transparent;
-  border-radius: var(--vue-pdfx-radius);
+  border-radius: var(--vue-pdfz-radius);
   cursor: pointer;
   transition:
-    background var(--vue-pdfx-transition),
-    color var(--vue-pdfx-transition),
-    border-color var(--vue-pdfx-transition),
-    transform 90ms var(--vue-pdfx-ease);
+    background var(--vue-pdfz-transition),
+    color var(--vue-pdfz-transition),
+    border-color var(--vue-pdfz-transition),
+    transform 90ms var(--vue-pdfz-ease);
 }
 
-.vue-pdfx-btn:not(:disabled):active {
+.vue-pdfz-btn:not(:disabled):active {
   transform: scale(0.94);
 }
 
-.vue-pdfx-btn:disabled {
+.vue-pdfz-btn:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.vue-pdfx-btn--active {
-  color: var(--vue-pdfx-color-text);
-  background: var(--vue-pdfx-color-surface-active);
+.vue-pdfz-btn--active {
+  color: var(--vue-pdfz-color-text);
+  background: var(--vue-pdfz-color-surface-active);
 }
 
 @media (hover: hover) {
-  .vue-pdfx-btn:hover:not(:disabled) {
-    color: var(--vue-pdfx-color-text);
-    background: var(--vue-pdfx-color-hover);
+  .vue-pdfz-btn:hover:not(:disabled) {
+    color: var(--vue-pdfz-color-text);
+    background: var(--vue-pdfz-color-hover);
   }
-  .vue-pdfx-btn--active:hover:not(:disabled) {
-    color: var(--vue-pdfx-color-text);
-    background: var(--vue-pdfx-color-surface-active);
+  .vue-pdfz-btn--active:hover:not(:disabled) {
+    color: var(--vue-pdfz-color-text);
+    background: var(--vue-pdfz-color-surface-active);
   }
 }
 
-.vue-pdfx-icon {
+.vue-pdfz-icon {
   display: block;
   flex: none;
-  inline-size: var(--vue-pdfx-icon-size);
-  block-size: var(--vue-pdfx-icon-size);
+  inline-size: var(--vue-pdfz-icon-size);
+  block-size: var(--vue-pdfz-icon-size);
   fill: none;
   stroke: currentColor;
   stroke-width: 1.6;
@@ -166,70 +166,70 @@
   stroke-linejoin: round;
 }
 
-.vue-pdfx-input,
-.vue-pdfx-select {
+.vue-pdfz-input,
+.vue-pdfz-select {
   block-size: 30px;
   padding-inline: 8px;
   font: inherit;
-  color: var(--vue-pdfx-color-text);
-  background: var(--vue-pdfx-color-surface);
-  border: 1px solid var(--vue-pdfx-color-border-strong);
-  border-radius: var(--vue-pdfx-radius);
+  color: var(--vue-pdfz-color-text);
+  background: var(--vue-pdfz-color-surface);
+  border: 1px solid var(--vue-pdfz-color-border-strong);
+  border-radius: var(--vue-pdfz-radius);
 }
 
 @media (pointer: coarse) {
-  .vue-pdfx-input,
-  .vue-pdfx-select {
+  .vue-pdfz-input,
+  .vue-pdfz-select {
     block-size: 38px;
   }
 }
 
-.vue-pdfx-input:focus-visible,
-.vue-pdfx-select:focus-visible {
-  border-color: var(--vue-pdfx-color-focus-ring);
-  outline: 2px solid var(--vue-pdfx-color-focus-ring);
+.vue-pdfz-input:focus-visible,
+.vue-pdfz-select:focus-visible {
+  border-color: var(--vue-pdfz-color-focus-ring);
+  outline: 2px solid var(--vue-pdfz-color-focus-ring);
   outline-offset: 1px;
 }
 
-.vue-pdfx-toolbar__pagebox {
+.vue-pdfz-toolbar__pagebox {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding-inline: 4px;
 }
 
-.vue-pdfx-viewer[dir='rtl'] .vue-pdfx-btn--nav .vue-pdfx-icon {
+.vue-pdfz-viewer[dir='rtl'] .vue-pdfz-btn--nav .vue-pdfz-icon {
   transform: scaleX(-1);
 }
 
-.vue-pdfx-page-input {
+.vue-pdfz-page-input {
   inline-size: 38px;
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
 
-.vue-pdfx-page-total {
+.vue-pdfz-page-total {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  color: var(--vue-pdfx-color-text-muted);
+  color: var(--vue-pdfz-color-text-muted);
 }
 
-.vue-pdfx-viewer :focus-visible {
-  outline: 2px solid var(--vue-pdfx-color-focus-ring);
+.vue-pdfz-viewer :focus-visible {
+  outline: 2px solid var(--vue-pdfz-color-focus-ring);
   outline-offset: 2px;
 }
 
 /* ------------------------------------------------------------------ *
  * Body: sidebar + main scroll area
  * ------------------------------------------------------------------ */
-.vue-pdfx-body {
+.vue-pdfz-body {
   position: relative;
   display: flex;
   flex: 1 1 auto;
   min-block-size: 0;
 }
 
-.vue-pdfx-content {
+.vue-pdfz-content {
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -238,43 +238,43 @@
   min-block-size: 0;
 }
 
-.vue-pdfx-sidebar {
+.vue-pdfz-sidebar {
   display: flex;
   flex: none;
   flex-direction: column;
-  inline-size: var(--vue-pdfx-sidebar-width);
+  inline-size: var(--vue-pdfz-sidebar-width);
   overflow: hidden;
-  background: var(--vue-pdfx-color-sidebar-bg);
-  border-inline-end: 1px solid var(--vue-pdfx-color-border);
+  background: var(--vue-pdfz-color-sidebar-bg);
+  border-inline-end: 1px solid var(--vue-pdfz-color-border);
 }
 
-.vue-pdfx-sidebar__inner {
+.vue-pdfz-sidebar__inner {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  inline-size: var(--vue-pdfx-sidebar-width);
+  inline-size: var(--vue-pdfz-sidebar-width);
   min-block-size: 0;
 }
 
-.vue-pdfx-sidebar--drawer {
+.vue-pdfz-sidebar--drawer {
   position: absolute;
   z-index: 6;
   inset-block: 0;
   inset-inline-start: 0;
-  box-shadow: var(--vue-pdfx-shadow-popover);
+  box-shadow: var(--vue-pdfz-shadow-popover);
 }
 
-.vue-pdfx-backdrop {
+.vue-pdfz-backdrop {
   position: absolute;
   z-index: 5;
   inset: 0;
   padding: 0;
-  background: var(--vue-pdfx-color-backdrop);
+  background: var(--vue-pdfz-color-backdrop);
   border: 0;
   cursor: pointer;
 }
 
-.vue-pdfx-main {
+.vue-pdfz-main {
   position: relative;
   flex: 1 1 auto;
   min-inline-size: 0;
@@ -283,19 +283,19 @@
   direction: ltr;
 }
 
-.vue-pdfx-pages {
+.vue-pdfz-pages {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-items: safe center;
-  gap: var(--vue-pdfx-page-gap);
+  gap: var(--vue-pdfz-page-gap);
   inline-size: max-content;
   min-inline-size: 100%;
   min-block-size: 100%;
-  padding: var(--vue-pdfx-page-gap);
+  padding: var(--vue-pdfz-page-gap);
 }
 
-.vue-pdfx-pages--facing {
+.vue-pdfz-pages--facing {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -307,71 +307,71 @@
 /* ------------------------------------------------------------------ *
  * Sidebar / drawer / backdrop / search-bar transitions
  * ------------------------------------------------------------------ */
-.vue-pdfx-sidebar-enter-active,
-.vue-pdfx-sidebar-leave-active {
+.vue-pdfz-sidebar-enter-active,
+.vue-pdfz-sidebar-leave-active {
   overflow: hidden;
-  transition: inline-size var(--vue-pdfx-duration-slow) var(--vue-pdfx-ease);
+  transition: inline-size var(--vue-pdfz-duration-slow) var(--vue-pdfz-ease);
 }
-.vue-pdfx-sidebar-enter-from,
-.vue-pdfx-sidebar-leave-to {
+.vue-pdfz-sidebar-enter-from,
+.vue-pdfz-sidebar-leave-to {
   inline-size: 0;
 }
-.vue-pdfx-sidebar-enter-active .vue-pdfx-sidebar__inner,
-.vue-pdfx-sidebar-leave-active .vue-pdfx-sidebar__inner {
-  transition: transform var(--vue-pdfx-duration-slow) var(--vue-pdfx-ease);
+.vue-pdfz-sidebar-enter-active .vue-pdfz-sidebar__inner,
+.vue-pdfz-sidebar-leave-active .vue-pdfz-sidebar__inner {
+  transition: transform var(--vue-pdfz-duration-slow) var(--vue-pdfz-ease);
 }
-.vue-pdfx-sidebar-enter-from .vue-pdfx-sidebar__inner,
-.vue-pdfx-sidebar-leave-to .vue-pdfx-sidebar__inner {
+.vue-pdfz-sidebar-enter-from .vue-pdfz-sidebar__inner,
+.vue-pdfz-sidebar-leave-to .vue-pdfz-sidebar__inner {
   transform: translateX(-100%);
 }
-.vue-pdfx-viewer[dir='rtl'] .vue-pdfx-sidebar-enter-from .vue-pdfx-sidebar__inner,
-.vue-pdfx-viewer[dir='rtl'] .vue-pdfx-sidebar-leave-to .vue-pdfx-sidebar__inner {
+.vue-pdfz-viewer[dir='rtl'] .vue-pdfz-sidebar-enter-from .vue-pdfz-sidebar__inner,
+.vue-pdfz-viewer[dir='rtl'] .vue-pdfz-sidebar-leave-to .vue-pdfz-sidebar__inner {
   transform: translateX(100%);
 }
 
-.vue-pdfx-drawer-enter-active,
-.vue-pdfx-drawer-leave-active {
-  transition: transform var(--vue-pdfx-duration-slow) var(--vue-pdfx-ease);
+.vue-pdfz-drawer-enter-active,
+.vue-pdfz-drawer-leave-active {
+  transition: transform var(--vue-pdfz-duration-slow) var(--vue-pdfz-ease);
 }
-.vue-pdfx-drawer-enter-from,
-.vue-pdfx-drawer-leave-to {
+.vue-pdfz-drawer-enter-from,
+.vue-pdfz-drawer-leave-to {
   transform: translateX(-104%);
 }
-.vue-pdfx-viewer[dir='rtl'] .vue-pdfx-drawer-enter-from,
-.vue-pdfx-viewer[dir='rtl'] .vue-pdfx-drawer-leave-to {
+.vue-pdfz-viewer[dir='rtl'] .vue-pdfz-drawer-enter-from,
+.vue-pdfz-viewer[dir='rtl'] .vue-pdfz-drawer-leave-to {
   transform: translateX(104%);
 }
 
-.vue-pdfx-backdrop-fade-enter-active,
-.vue-pdfx-backdrop-fade-leave-active {
-  transition: opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+.vue-pdfz-backdrop-fade-enter-active,
+.vue-pdfz-backdrop-fade-leave-active {
+  transition: opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-backdrop-fade-enter-from,
-.vue-pdfx-backdrop-fade-leave-to {
+.vue-pdfz-backdrop-fade-enter-from,
+.vue-pdfz-backdrop-fade-leave-to {
   opacity: 0;
 }
 
-.vue-pdfx-search-enter-active,
-.vue-pdfx-search-leave-active {
+.vue-pdfz-search-enter-active,
+.vue-pdfz-search-leave-active {
   transition:
-    opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    transform var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+    opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    transform var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-search-enter-from,
-.vue-pdfx-search-leave-to {
+.vue-pdfz-search-enter-from,
+.vue-pdfz-search-leave-to {
   opacity: 0;
   transform: translateY(-12px);
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-search-enter-active,
-.vue-pdfx-viewer--compact .vue-pdfx-search-leave-active {
+.vue-pdfz-viewer--compact .vue-pdfz-search-enter-active,
+.vue-pdfz-viewer--compact .vue-pdfz-search-leave-active {
   overflow: hidden;
   transition:
-    height var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+    height var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-viewer--compact .vue-pdfx-search-enter-from,
-.vue-pdfx-viewer--compact .vue-pdfx-search-leave-to {
+.vue-pdfz-viewer--compact .vue-pdfz-search-enter-from,
+.vue-pdfz-viewer--compact .vue-pdfz-search-leave-to {
   opacity: 0;
   transform: none;
 }
@@ -379,22 +379,22 @@
 /* ------------------------------------------------------------------ *
  * Page
  * ------------------------------------------------------------------ */
-.vue-pdfx-page {
+.vue-pdfz-page {
   position: relative;
   flex: none;
-  background: var(--vue-pdfx-color-page);
-  box-shadow: var(--vue-pdfx-shadow-page);
+  background: var(--vue-pdfz-color-page);
+  box-shadow: var(--vue-pdfz-shadow-page);
 }
 
-.vue-pdfx-page__inner {
+.vue-pdfz-page__inner {
   position: relative;
 }
 
-.vue-pdfx-page--rendered .vue-pdf-embed {
-  animation: vue-pdfx-page-in var(--vue-pdfx-duration) var(--vue-pdfx-ease) both;
+.vue-pdfz-page--rendered .vue-pdf-embed {
+  animation: vue-pdfz-page-in var(--vue-pdfz-duration) var(--vue-pdfz-ease) both;
 }
 
-@keyframes vue-pdfx-page-in {
+@keyframes vue-pdfz-page-in {
   from {
     opacity: 0;
   }
@@ -403,26 +403,26 @@
   }
 }
 
-.vue-pdfx-layout-single .vue-pdfx-page {
-  animation: vue-pdfx-page-in var(--vue-pdfx-duration) var(--vue-pdfx-ease) both;
+.vue-pdfz-layout-single .vue-pdfz-page {
+  animation: vue-pdfz-page-in var(--vue-pdfz-duration) var(--vue-pdfz-ease) both;
 }
 
-.vue-pdfx-page__placeholder {
+.vue-pdfz-page__placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--vue-pdfx-color-text-muted);
-  background: var(--vue-pdfx-color-page);
+  color: var(--vue-pdfz-color-text-muted);
+  background: var(--vue-pdfz-color-page);
 }
 
-.vue-pdfx-page-overlay {
+.vue-pdfz-page-overlay {
   position: absolute;
   z-index: 3;
   inset: 0;
   pointer-events: none;
 }
 
-.vue-pdfx-page .textLayer {
+.vue-pdfz-page .textLayer {
   position: absolute;
   z-index: 1;
   inset: 0;
@@ -431,62 +431,62 @@
   opacity: 1;
 }
 
-.vue-pdfx-page .textLayer ::selection {
+.vue-pdfz-page .textLayer ::selection {
   background: rgba(47, 107, 255, 0.28);
-  background: color-mix(in srgb, var(--vue-pdfx-color-focus-ring) 28%, transparent);
+  background: color-mix(in srgb, var(--vue-pdfz-color-focus-ring) 28%, transparent);
 }
 
-.vue-pdfx-page .textLayer br::selection {
+.vue-pdfz-page .textLayer br::selection {
   background: transparent;
 }
 
-.vue-pdfx-page .textLayer .highlight {
+.vue-pdfz-page .textLayer .highlight {
   --highlight-bg-color: rgba(255, 210, 10, 0.45);
-  --highlight-bg-color: color-mix(in srgb, var(--vue-pdfx-color-highlight) 60%, transparent);
+  --highlight-bg-color: color-mix(in srgb, var(--vue-pdfz-color-highlight) 60%, transparent);
   --highlight-selected-bg-color: rgba(255, 150, 0, 0.62);
   --highlight-selected-bg-color: color-mix(
     in srgb,
-    var(--vue-pdfx-color-highlight-active) 78%,
+    var(--vue-pdfz-color-highlight-active) 78%,
     transparent
   );
   --highlight-border-color: rgba(176, 134, 28, 0.85);
-  --highlight-border-color: color-mix(in srgb, var(--vue-pdfx-color-highlight-active), #000 30%);
+  --highlight-border-color: color-mix(in srgb, var(--vue-pdfz-color-highlight-active), #000 30%);
   --highlight-border-selected-color: rgba(150, 108, 0, 0.95);
   --highlight-border-selected-color: color-mix(
     in srgb,
-    var(--vue-pdfx-color-highlight-active),
+    var(--vue-pdfz-color-highlight-active),
     #000 42%
   );
   border-radius: 2px;
   box-shadow: inset 0 0 0 1px var(--highlight-border-color);
 }
 
-.vue-pdfx-page .textLayer .highlight.selected {
+.vue-pdfz-page .textLayer .highlight.selected {
   background-color: var(--highlight-selected-bg-color);
   box-shadow: inset 0 0 0 1.5px var(--highlight-border-selected-color);
 }
 
-.vue-pdfx-page .annotationLayer {
+.vue-pdfz-page .annotationLayer {
   position: absolute;
   z-index: 2;
   inset: 0;
 }
 
-.vue-pdfx-page .annotationLayer section {
+.vue-pdfz-page .annotationLayer section {
   position: absolute;
 }
 
 /* ------------------------------------------------------------------ *
  * Thumbnails
  * ------------------------------------------------------------------ */
-.vue-pdfx-thumbnails {
+.vue-pdfz-thumbnails {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   min-block-size: 0;
 }
 
-.vue-pdfx-thumbnails__list {
+.vue-pdfz-thumbnails__list {
   position: relative;
   display: flex;
   flex: 1 1 auto;
@@ -499,193 +499,193 @@
   overflow-y: auto;
 }
 
-.vue-pdfx-thumb {
+.vue-pdfz-thumb {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 7px;
   padding: 0;
-  color: var(--vue-pdfx-color-text-muted);
+  color: var(--vue-pdfz-color-text-muted);
   background: transparent;
   border: 0;
   cursor: pointer;
 }
 
-.vue-pdfx-thumb__frame {
+.vue-pdfz-thumb__frame {
   display: flex;
   align-items: center;
   justify-content: center;
   inline-size: 120px;
   max-inline-size: 100%;
   overflow: hidden;
-  background: var(--vue-pdfx-color-page);
-  border: 1px solid var(--vue-pdfx-color-border);
+  background: var(--vue-pdfz-color-page);
+  border: 1px solid var(--vue-pdfz-color-border);
   border-radius: 3px;
-  box-shadow: var(--vue-pdfx-shadow);
+  box-shadow: var(--vue-pdfz-shadow);
   transition:
-    border-color var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    box-shadow var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+    border-color var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    box-shadow var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
 
 @media (hover: hover) {
-  .vue-pdfx-thumb:hover .vue-pdfx-thumb__frame {
+  .vue-pdfz-thumb:hover .vue-pdfz-thumb__frame {
     border-color: transparent;
     box-shadow:
-      0 0 0 1.5px var(--vue-pdfx-color-surface),
-      0 0 0 3px var(--vue-pdfx-color-primary);
+      0 0 0 1.5px var(--vue-pdfz-color-surface),
+      0 0 0 3px var(--vue-pdfz-color-primary);
   }
 }
 
-.vue-pdfx-thumb--active {
-  color: var(--vue-pdfx-color-text);
+.vue-pdfz-thumb--active {
+  color: var(--vue-pdfz-color-text);
 }
 
-.vue-pdfx-thumb--active .vue-pdfx-thumb__frame {
+.vue-pdfz-thumb--active .vue-pdfz-thumb__frame {
   border-color: transparent;
   box-shadow:
-    0 0 0 2px var(--vue-pdfx-color-surface),
-    0 0 0 4px var(--vue-pdfx-color-primary),
-    var(--vue-pdfx-shadow-elevated);
+    0 0 0 2px var(--vue-pdfz-color-surface),
+    0 0 0 4px var(--vue-pdfz-color-primary),
+    var(--vue-pdfz-shadow-elevated);
 }
 
 @media (hover: hover) {
-  .vue-pdfx-thumb--active:hover .vue-pdfx-thumb__frame {
+  .vue-pdfz-thumb--active:hover .vue-pdfz-thumb__frame {
     box-shadow:
-      0 0 0 2px var(--vue-pdfx-color-surface),
-      0 0 0 4px var(--vue-pdfx-color-primary),
-      var(--vue-pdfx-shadow-elevated);
+      0 0 0 2px var(--vue-pdfz-color-surface),
+      0 0 0 4px var(--vue-pdfz-color-primary),
+      var(--vue-pdfz-shadow-elevated);
   }
 }
 
-.vue-pdfx-thumb__canvas {
+.vue-pdfz-thumb__canvas {
   display: block;
   inline-size: 100%;
   block-size: auto;
 }
 
-.vue-pdfx-thumb__label {
+.vue-pdfz-thumb__label {
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
 }
 
-.vue-pdfx-thumb__label--active {
+.vue-pdfz-thumb__label--active {
   font-weight: 700;
-  color: var(--vue-pdfx-color-primary);
+  color: var(--vue-pdfz-color-primary);
 }
 
 /* ------------------------------------------------------------------ *
  * Search bar
  * ------------------------------------------------------------------ */
-.vue-pdfx-search-slot {
+.vue-pdfz-search-slot {
   position: absolute;
   z-index: 7;
-  inset-block-start: var(--vue-pdfx-spacing);
-  inset-inline-end: var(--vue-pdfx-spacing);
+  inset-block-start: var(--vue-pdfz-spacing);
+  inset-inline-end: var(--vue-pdfz-spacing);
 }
 
-.vue-pdfx-searchbar {
+.vue-pdfz-searchbar {
   display: flex;
   align-items: center;
   gap: 2px;
   min-block-size: 46px;
   padding-inline: 6px;
-  background: var(--vue-pdfx-color-surface);
-  border: 1px solid var(--vue-pdfx-color-border-strong);
-  border-radius: var(--vue-pdfx-radius);
-  box-shadow: var(--vue-pdfx-shadow-popover);
+  background: var(--vue-pdfz-color-surface);
+  border: 1px solid var(--vue-pdfz-color-border-strong);
+  border-radius: var(--vue-pdfz-radius);
+  box-shadow: var(--vue-pdfz-shadow-popover);
 }
 
-.vue-pdfx-searchbar__field {
+.vue-pdfz-searchbar__field {
   display: flex;
   flex: 1 1 auto;
   align-items: center;
   min-inline-size: 0;
 }
 
-.vue-pdfx-searchbar__leading {
+.vue-pdfz-searchbar__leading {
   display: inline-flex;
   flex: none;
   align-items: center;
   padding-inline: 6px;
-  color: var(--vue-pdfx-color-text-muted);
+  color: var(--vue-pdfz-color-text-muted);
 }
 
-.vue-pdfx-searchbar__input {
+.vue-pdfz-searchbar__input {
   flex: 1 1 auto;
   min-inline-size: 150px;
   block-size: 30px;
   padding-inline: 4px;
   font: inherit;
-  color: var(--vue-pdfx-color-text);
+  color: var(--vue-pdfz-color-text);
   background: transparent;
   border: 0;
 }
 
-.vue-pdfx-searchbar__input:focus-visible {
+.vue-pdfz-searchbar__input:focus-visible {
   outline: none;
 }
 
-.vue-pdfx-searchbar__count {
+.vue-pdfz-searchbar__count {
   flex: none;
   min-inline-size: 7em;
   padding-inline: 6px;
   font-size: 0.85em;
   font-variant-numeric: tabular-nums;
   text-align: end;
-  color: var(--vue-pdfx-color-text-muted);
+  color: var(--vue-pdfz-color-text-muted);
 }
 
-.vue-pdfx-count-enter-active,
-.vue-pdfx-count-leave-active {
-  transition: opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+.vue-pdfz-count-enter-active,
+.vue-pdfz-count-leave-active {
+  transition: opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-count-enter-from,
-.vue-pdfx-count-leave-to {
+.vue-pdfz-count-enter-from,
+.vue-pdfz-count-leave-to {
   opacity: 0;
 }
 
-.vue-pdfx-searchbar__nav,
-.vue-pdfx-searchbar__toggles {
+.vue-pdfz-searchbar__nav,
+.vue-pdfz-searchbar__toggles {
   display: flex;
   flex: none;
   align-items: center;
   gap: 2px;
 }
 
-.vue-pdfx-searchbar__controls {
+.vue-pdfz-searchbar__controls {
   display: contents;
 }
 
-.vue-pdfx-searchbar__divider {
+.vue-pdfz-searchbar__divider {
   flex: none;
   align-self: stretch;
   inline-size: 1px;
   margin-block: 8px;
   margin-inline: 2px;
-  background: var(--vue-pdfx-color-border);
+  background: var(--vue-pdfz-color-border);
 }
 
-.vue-pdfx-searchbar__toggle {
+.vue-pdfz-searchbar__toggle {
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-.vue-pdfx-searchbar__toggle--word {
+.vue-pdfz-searchbar__toggle--word {
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
 }
 
-.vue-pdfx-viewer--compact.vue-pdfx-viewer--searching .vue-pdfx-toolbar {
+.vue-pdfz-viewer--compact.vue-pdfz-viewer--searching .vue-pdfz-toolbar {
   box-shadow: none;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-search-slot {
+.vue-pdfz-viewer--compact .vue-pdfz-search-slot {
   position: static;
   flex: none;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar {
   flex-wrap: wrap;
   gap: 6px;
   row-gap: 8px;
@@ -693,30 +693,30 @@
   padding-block: 7px;
   padding-inline: 12px;
   border-block-start: 0;
-  border-block-end: 1px solid var(--vue-pdfx-color-border);
+  border-block-end: 1px solid var(--vue-pdfz-color-border);
   border-inline: 0;
   border-radius: 0;
-  box-shadow: var(--vue-pdfx-shadow);
+  box-shadow: var(--vue-pdfz-shadow);
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__field {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__field {
   flex: 1 1 13em;
   block-size: 36px;
   padding-inline: 10px;
-  background: var(--vue-pdfx-color-surface);
-  border: 1px solid var(--vue-pdfx-color-border-strong);
-  border-radius: var(--vue-pdfx-radius);
+  background: var(--vue-pdfz-color-surface);
+  border: 1px solid var(--vue-pdfz-color-border-strong);
+  border-radius: var(--vue-pdfz-radius);
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__input {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__input {
   min-inline-size: 0;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__count {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__count {
   min-inline-size: 0;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__controls {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__controls {
   display: flex;
   flex: 0 0 auto;
   align-items: center;
@@ -724,33 +724,33 @@
   margin-inline-start: auto;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__field {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__field {
   order: 0;
 }
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__toggles {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__toggles {
   order: 1;
 }
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__divider {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__divider {
   order: 2;
 }
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__nav {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__nav {
   order: 3;
 }
 
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__close,
-.vue-pdfx-viewer--compact .vue-pdfx-searchbar__divider--trailing {
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__close,
+.vue-pdfz-viewer--compact .vue-pdfz-searchbar__divider--trailing {
   display: none;
 }
 
 /* ------------------------------------------------------------------ *
  * Toolbar overflow popover (narrow container)
  * ------------------------------------------------------------------ */
-.vue-pdfx-overflow-wrap {
+.vue-pdfz-overflow-wrap {
   position: relative;
   display: inline-flex;
 }
 
-.vue-pdfx-overflow {
+.vue-pdfz-overflow {
   position: absolute;
   z-index: 20;
   inset-block-start: calc(100% + 4px);
@@ -760,13 +760,13 @@
   gap: 2px;
   min-inline-size: 200px;
   padding: 6px;
-  background: var(--vue-pdfx-color-surface);
-  border: 1px solid var(--vue-pdfx-color-border);
-  border-radius: var(--vue-pdfx-radius);
-  box-shadow: var(--vue-pdfx-shadow-popover);
+  background: var(--vue-pdfz-color-surface);
+  border: 1px solid var(--vue-pdfz-color-border);
+  border-radius: var(--vue-pdfz-radius);
+  box-shadow: var(--vue-pdfz-shadow-popover);
 }
 
-.vue-pdfx-overflow__item {
+.vue-pdfz-overflow__item {
   display: flex;
   align-items: center;
   gap: 11px;
@@ -774,7 +774,7 @@
   padding: 9px 10px;
   font: inherit;
   text-align: start;
-  color: var(--vue-pdfx-color-text);
+  color: var(--vue-pdfz-color-text);
   background: transparent;
   border: 0;
   border-radius: 7px;
@@ -782,26 +782,26 @@
 }
 
 @media (hover: hover) {
-  .vue-pdfx-overflow__item:hover:not(:disabled) {
-    background: var(--vue-pdfx-color-hover);
+  .vue-pdfz-overflow__item:hover:not(:disabled) {
+    background: var(--vue-pdfz-color-hover);
   }
 }
 
-.vue-pdfx-overflow__item:disabled {
+.vue-pdfz-overflow__item:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.vue-pdfx-overflow__divider {
+.vue-pdfz-overflow__divider {
   block-size: 1px;
   margin: 6px 8px;
-  background: var(--vue-pdfx-color-border);
+  background: var(--vue-pdfz-color-border);
 }
 
 /* ------------------------------------------------------------------ *
  * Zoom indicator pill (pinch / wheel zoom)
  * ------------------------------------------------------------------ */
-.vue-pdfx-zoom-pill {
+.vue-pdfz-zoom-pill {
   position: absolute;
   z-index: 8;
   inset-block-end: 18px;
@@ -823,7 +823,7 @@
 /* ------------------------------------------------------------------ *
  * Overlays (loading / error / password / empty)
  * ------------------------------------------------------------------ */
-.vue-pdfx-overlay {
+.vue-pdfz-overlay {
   position: absolute;
   z-index: 10;
   inset: 0;
@@ -832,77 +832,77 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: calc(var(--vue-pdfx-spacing) * 3);
+  padding: calc(var(--vue-pdfz-spacing) * 3);
   text-align: center;
-  background: var(--vue-pdfx-color-bg);
+  background: var(--vue-pdfz-color-bg);
 }
 
-.vue-pdfx-overlay__form,
-.vue-pdfx-overlay > .vue-pdfx-btn--action {
+.vue-pdfz-overlay__form,
+.vue-pdfz-overlay > .vue-pdfz-btn--action {
   margin-block-start: 14px;
 }
 
-.vue-pdfx-overlay__icon {
+.vue-pdfz-overlay__icon {
   display: flex;
   align-items: center;
   justify-content: center;
   inline-size: 64px;
   block-size: 64px;
   margin-block-end: 14px;
-  color: var(--vue-pdfx-color-text-muted);
-  background: var(--vue-pdfx-color-surface);
-  border: 1px solid var(--vue-pdfx-color-border);
+  color: var(--vue-pdfz-color-text-muted);
+  background: var(--vue-pdfz-color-surface);
+  border: 1px solid var(--vue-pdfz-color-border);
   border-radius: 16px;
-  box-shadow: var(--vue-pdfx-shadow);
+  box-shadow: var(--vue-pdfz-shadow);
 }
 
-.vue-pdfx-overlay__icon .vue-pdfx-icon {
+.vue-pdfz-overlay__icon .vue-pdfz-icon {
   inline-size: 30px;
   block-size: 30px;
   stroke-width: 1.5;
 }
 
-.vue-pdfx-overlay__title {
+.vue-pdfz-overlay__title {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
 }
 
-.vue-pdfx-overlay__message {
+.vue-pdfz-overlay__message {
   max-inline-size: 300px;
   margin: 0;
-  color: var(--vue-pdfx-color-text-muted);
+  color: var(--vue-pdfz-color-text-muted);
 }
 
-.vue-pdfx-overlay__message--error {
+.vue-pdfz-overlay__message--error {
   max-inline-size: none;
   font-size: 12px;
   font-weight: 500;
-  color: var(--vue-pdfx-color-danger);
+  color: var(--vue-pdfz-color-danger);
 }
 
-.vue-pdfx-msg-enter-active,
-.vue-pdfx-msg-leave-active {
+.vue-pdfz-msg-enter-active,
+.vue-pdfz-msg-leave-active {
   overflow: hidden;
   transition:
-    opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    transform var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    max-block-size var(--vue-pdfx-duration) var(--vue-pdfx-ease),
-    margin-block-start var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+    opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    transform var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    max-block-size var(--vue-pdfz-duration) var(--vue-pdfz-ease),
+    margin-block-start var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-msg-enter-from,
-.vue-pdfx-msg-leave-to {
+.vue-pdfz-msg-enter-from,
+.vue-pdfz-msg-leave-to {
   max-block-size: 0;
   margin-block-start: -8px;
   opacity: 0;
   transform: translateY(-4px);
 }
-.vue-pdfx-msg-enter-to,
-.vue-pdfx-msg-leave-from {
+.vue-pdfz-msg-enter-to,
+.vue-pdfz-msg-leave-from {
   max-block-size: 2rem;
 }
 
-.vue-pdfx-overlay__form {
+.vue-pdfz-overlay__form {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -912,28 +912,28 @@
   text-align: start;
 }
 
-.vue-pdfx-overlay__form .vue-pdfx-btn--action {
+.vue-pdfz-overlay__form .vue-pdfz-btn--action {
   margin-block-start: 4px;
 }
 
-.vue-pdfx-password-input {
+.vue-pdfz-password-input {
   block-size: 40px;
   padding-inline: 16px;
   font-size: 16px;
   text-align: start;
-  border-radius: var(--vue-pdfx-radius);
+  border-radius: var(--vue-pdfz-radius);
 }
 
-.vue-pdfx-input--invalid,
-.vue-pdfx-input--invalid:focus-visible {
-  border-color: var(--vue-pdfx-color-danger);
+.vue-pdfz-input--invalid,
+.vue-pdfz-input--invalid:focus-visible {
+  border-color: var(--vue-pdfz-color-danger);
   box-shadow: 0 0 0 3px rgba(217, 45, 32, 0.18);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--vue-pdfx-color-danger) 18%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--vue-pdfz-color-danger) 18%, transparent);
   outline: none;
-  animation: vue-pdfx-shake 0.32s var(--vue-pdfx-ease);
+  animation: vue-pdfz-shake 0.32s var(--vue-pdfz-ease);
 }
 
-@keyframes vue-pdfx-shake {
+@keyframes vue-pdfz-shake {
   20% {
     transform: translateX(-4px);
   }
@@ -951,7 +951,7 @@
   }
 }
 
-.vue-pdfx-btn--action {
+.vue-pdfz-btn--action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -960,37 +960,37 @@
   padding-inline: 18px;
   font: inherit;
   font-weight: 600;
-  color: var(--vue-pdfx-color-primary-contrast);
-  background: var(--vue-pdfx-color-primary);
+  color: var(--vue-pdfz-color-primary-contrast);
+  background: var(--vue-pdfz-color-primary);
   border: 1px solid transparent;
-  border-radius: var(--vue-pdfx-radius);
+  border-radius: var(--vue-pdfz-radius);
   cursor: pointer;
   transition:
-    background var(--vue-pdfx-transition),
-    border-color var(--vue-pdfx-transition);
+    background var(--vue-pdfz-transition),
+    border-color var(--vue-pdfz-transition);
 }
 
 @media (hover: hover) {
-  .vue-pdfx-btn--action:hover:not(:disabled) {
-    background: var(--vue-pdfx-color-primary-hover);
+  .vue-pdfz-btn--action:hover:not(:disabled) {
+    background: var(--vue-pdfz-color-primary-hover);
   }
 }
 
-.vue-pdfx-btn--action:not(:disabled):active {
-  background: var(--vue-pdfx-color-primary-hover);
+.vue-pdfz-btn--action:not(:disabled):active {
+  background: var(--vue-pdfz-color-primary-hover);
   background: color-mix(
     in srgb,
-    var(--vue-pdfx-color-primary),
-    var(--vue-pdfx-color-primary-contrast) 18%
+    var(--vue-pdfz-color-primary),
+    var(--vue-pdfz-color-primary-contrast) 18%
   );
 }
 
-.vue-pdfx-btn--action:disabled {
+.vue-pdfz-btn--action:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.vue-pdfx-loadbar {
+.vue-pdfz-loadbar {
   position: absolute;
   inset-block-start: 0;
   inset-inline: 0;
@@ -998,45 +998,45 @@
   overflow: hidden;
 }
 
-.vue-pdfx-loadbar__seg {
+.vue-pdfz-loadbar__seg {
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
   inline-size: 8%;
-  background: var(--vue-pdfx-color-primary);
-  transition: inline-size var(--vue-pdfx-duration) linear;
+  background: var(--vue-pdfz-color-primary);
+  transition: inline-size var(--vue-pdfz-duration) linear;
 }
 
-.vue-pdfx-fade-leave-active .vue-pdfx-loadbar__seg {
+.vue-pdfz-fade-leave-active .vue-pdfz-loadbar__seg {
   inline-size: 100% !important;
 }
 
-.vue-pdfx-loading {
+.vue-pdfz-loading {
   display: flex;
   align-items: center;
   gap: 9px;
   font-size: 13px;
   font-weight: 500;
-  color: var(--vue-pdfx-color-text-secondary);
+  color: var(--vue-pdfz-color-text-secondary);
 }
 
-.vue-pdfx-spinner {
+.vue-pdfz-spinner {
   flex: none;
   inline-size: 16px;
   block-size: 16px;
-  border: 2px solid var(--vue-pdfx-color-border-strong);
-  border-block-start-color: var(--vue-pdfx-color-primary);
+  border: 2px solid var(--vue-pdfz-color-border-strong);
+  border-block-start-color: var(--vue-pdfz-color-primary);
   border-radius: 50%;
-  animation: vue-pdfx-spin 0.8s linear infinite;
+  animation: vue-pdfz-spin 0.8s linear infinite;
 }
 
-@keyframes vue-pdfx-spin {
+@keyframes vue-pdfz-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-.vue-pdfx-sr-only {
+.vue-pdfz-sr-only {
   position: absolute;
   inline-size: 1px;
   block-size: 1px;
@@ -1048,23 +1048,23 @@
   clip: rect(0, 0, 0, 0);
 }
 
-.vue-pdfx-fade-enter-active,
-.vue-pdfx-fade-leave-active {
-  transition: opacity var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+.vue-pdfz-fade-enter-active,
+.vue-pdfz-fade-leave-active {
+  transition: opacity var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
-.vue-pdfx-fade-enter-from,
-.vue-pdfx-fade-leave-to {
+.vue-pdfz-fade-enter-from,
+.vue-pdfz-fade-leave-to {
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vue-pdfx-main {
+  .vue-pdfz-main {
     scroll-behavior: auto;
   }
-  .vue-pdfx-spinner {
+  .vue-pdfz-spinner {
     animation-duration: 1.6s;
   }
-  .vue-pdfx-viewer * {
+  .vue-pdfz-viewer * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }

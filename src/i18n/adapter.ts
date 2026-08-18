@@ -8,7 +8,7 @@ interface VueI18nLike {
 interface VueI18nAdapterOptions {
   /** Force a text direction; otherwise, the built-in resolver is used. */
   dir?: TextDirection
-  /** Key prefix used when looking strings up in the host vue-i18n catalog. Defaults to `vuePdfx.`. */
+  /** Key prefix used when looking strings up in the host vue-i18n catalog. Defaults to `vuePdfz.`. */
   prefix?: string
 }
 
@@ -16,7 +16,7 @@ interface VueI18nAdapterOptions {
  * Build an {@link I18nAdapter} that delegates to a host `vue-i18n` instance.
  * The library never depends on `vue-i18n` directly - pass the instance in.
  *
- * Strings are looked up as `${prefix}${key}` (e.g. `vuePdfx.pageOf`). If the
+ * Strings are looked up as `${prefix}${key}` (e.g. `vuePdfz.pageOf`). If the
  * host catalog is missing a key, vue-i18n typically returns the key unchanged;
  * the adapter detects that and falls back to the built-in bundle.
  *
@@ -24,7 +24,7 @@ interface VueI18nAdapterOptions {
  * ```ts
  * import { useI18n } from 'vue-i18n'
  * const i18n = useI18n()
- * app.use(VuePdfx, { i18nAdapter: createVueI18nAdapter(i18n) })
+ * app.use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n) })
  * ```
  */
 export function createVueI18nAdapter(
@@ -33,7 +33,7 @@ export function createVueI18nAdapter(
 ): I18nAdapter {
   return {
     t(key: keyof LocaleMessages, params?: Record<string, string | number>) {
-      const fullKey = `${options.prefix ?? 'vuePdfx.'}${key}`
+      const fullKey = `${options.prefix ?? 'vuePdfz.'}${key}`
       const result = i18n.t(fullKey, params ?? {})
       if (result === fullKey || result === key) {
         return undefined

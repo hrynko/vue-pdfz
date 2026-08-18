@@ -1,10 +1,10 @@
 import { createApp } from 'vue'
-import VuePdfx from 'vue-pdfx'
+import VuePdfz from 'vue-pdfz'
 
-import 'vue-pdfx/style.css'
+import 'vue-pdfz/style.css'
 
 import App from './App.vue'
 
 import './styles.css'
 
-createApp(App).use(VuePdfx, { locale: 'en' }).mount('#app')
+createApp(App).use(VuePdfz, { locale: 'en' }).mount('#app')

@@ -31,7 +31,7 @@ describe('PdfViewer', () => {
     const loaded = wrapper.emitted('loaded')
     expect(loaded).toBeTruthy()
     expect((loaded![0][0] as { pageCount: number }).pageCount).toBe(3)
-    expect(wrapper.find('.vue-pdfx-toolbar').exists()).toBe(true)
+    expect(wrapper.find('.vue-pdfz-toolbar').exists()).toBe(true)
   })
 
   it('surfaces a page render failure as a RENDER_ERROR', async () => {
@@ -86,7 +86,7 @@ describe('PdfViewer', () => {
 
   it('does not render the toolbar when showToolbar is false', async () => {
     const wrapper = await mountViewer({ showToolbar: false })
-    expect(wrapper.find('.vue-pdfx-toolbar').exists()).toBe(false)
+    expect(wrapper.find('.vue-pdfz-toolbar').exists()).toBe(false)
   })
 
   it('applies theme tokens as CSS variables alongside the theme mode', async () => {
@@ -94,10 +94,10 @@ describe('PdfViewer', () => {
       theme: 'dark',
       themeTokens: { colorPrimary: 'red', ease: 'linear' },
     })
-    const viewer = wrapper.find('.vue-pdfx-viewer')
+    const viewer = wrapper.find('.vue-pdfz-viewer')
     const style = viewer.attributes('style') ?? ''
     expect(viewer.attributes('data-theme')).toBe('dark')
-    expect(style).toContain('--vue-pdfx-color-primary: red')
-    expect(style).toContain('--vue-pdfx-ease: linear')
+    expect(style).toContain('--vue-pdfz-color-primary: red')
+    expect(style).toContain('--vue-pdfz-ease: linear')
   })
 })

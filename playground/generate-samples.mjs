@@ -52,7 +52,7 @@ function makeTextPdf(pageCount = 5) {
     const lines = [
       'Sample Document',
       '',
-      'vue-pdfx is a customizable, i18n-ready PDF viewer for Vue 3.',
+      'vue-pdfz is a customizable, i18n-ready PDF viewer for Vue.',
       '',
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do',
       'eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut',
@@ -153,7 +153,7 @@ function makeProtectedPdf(password = 'test') {
   const permissions = -44
   const pBuf = Buffer.alloc(4)
   pBuf.writeInt32LE(permissions, 0)
-  const id = Buffer.from('vue-pdfx', 'latin1').subarray(0, 16)
+  const id = Buffer.from('vue-pdfz', 'latin1').subarray(0, 16)
   const fileKey = md5(Buffer.concat([pad(password), ownerEntry, pBuf, id])).subarray(0, 5)
   const userEntry = rc4(fileKey, RC4_PAD)
   const objectKey = (num) => {

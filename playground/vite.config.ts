@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 function slowSamplePlugin(): Plugin {
   return {
-    name: 'vue-pdfx-slow-sample',
+    name: 'vue-pdfz-slow-sample',
     configureServer(server) {
       server.middlewares.use('/slow-sample.pdf', (_req, res) => {
         const file = readFileSync(
@@ -38,11 +38,11 @@ export default defineConfig({
   resolve: {
     alias: [
       {
-        find: 'vue-pdfx/style.css',
+        find: 'vue-pdfz/style.css',
         replacement: fileURLToPath(new URL('../src/theme/default.css', import.meta.url)),
       },
       {
-        find: /^vue-pdfx$/,
+        find: /^vue-pdfz$/,
         replacement: fileURLToPath(new URL('../src/index.ts', import.meta.url)),
       },
     ],

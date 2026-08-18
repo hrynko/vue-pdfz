@@ -1,124 +1,124 @@
-.vue-pdfx-viewer {
-  --vue-pdfx-color-bg: #eceef1;
-  --vue-pdfx-color-surface: #ffffff;
-  --vue-pdfx-color-surface-active: #edeff2;
-  --vue-pdfx-color-border: #e4e6ea;
-  --vue-pdfx-color-border-strong: #d3d6db;
-  --vue-pdfx-color-text: #1a1d22;
-  --vue-pdfx-color-text-secondary: #5a616a;
-  --vue-pdfx-color-text-muted: #8b929b;
+.vue-pdfz-viewer {
+  --vue-pdfz-color-bg: #eceef1;
+  --vue-pdfz-color-surface: #ffffff;
+  --vue-pdfz-color-surface-active: #edeff2;
+  --vue-pdfz-color-border: #e4e6ea;
+  --vue-pdfz-color-border-strong: #d3d6db;
+  --vue-pdfz-color-text: #1a1d22;
+  --vue-pdfz-color-text-secondary: #5a616a;
+  --vue-pdfz-color-text-muted: #8b929b;
 
-  --vue-pdfx-color-primary: #0e0e10;
-  --vue-pdfx-color-primary-hover: #2a2a2e;
-  --vue-pdfx-color-primary-contrast: #ffffff;
+  --vue-pdfz-color-primary: #0e0e10;
+  --vue-pdfz-color-primary-hover: #2a2a2e;
+  --vue-pdfz-color-primary-contrast: #ffffff;
 
-  --vue-pdfx-color-toolbar-bg: #ffffff;
-  --vue-pdfx-color-toolbar-text: #1a1d22;
-  --vue-pdfx-color-sidebar-bg: #ffffff;
-  --vue-pdfx-color-page: #ffffff;
-  --vue-pdfx-color-hover: #edeff2;
+  --vue-pdfz-color-toolbar-bg: #ffffff;
+  --vue-pdfz-color-toolbar-text: #1a1d22;
+  --vue-pdfz-color-sidebar-bg: #ffffff;
+  --vue-pdfz-color-page: #ffffff;
+  --vue-pdfz-color-hover: #edeff2;
 
-  --vue-pdfx-color-focus-ring: #2f6bff;
-  --vue-pdfx-color-highlight: #ffe28a;
-  --vue-pdfx-color-highlight-active: #ffae34;
-  --vue-pdfx-color-danger: #d92d20;
-  --vue-pdfx-color-backdrop: rgba(16, 18, 22, 0.34);
+  --vue-pdfz-color-focus-ring: #2f6bff;
+  --vue-pdfz-color-highlight: #ffe28a;
+  --vue-pdfz-color-highlight-active: #ffae34;
+  --vue-pdfz-color-danger: #d92d20;
+  --vue-pdfz-color-backdrop: rgba(16, 18, 22, 0.34);
 
-  --vue-pdfx-toolbar-height: 52px;
-  --vue-pdfx-sidebar-width: 244px;
-  --vue-pdfx-icon-size: 20px;
-  --vue-pdfx-control-size: 32px;
-  --vue-pdfx-radius: 8px;
-  --vue-pdfx-spacing: 8px;
-  --vue-pdfx-page-gap: 28px;
+  --vue-pdfz-toolbar-height: 52px;
+  --vue-pdfz-sidebar-width: 244px;
+  --vue-pdfz-icon-size: 20px;
+  --vue-pdfz-control-size: 32px;
+  --vue-pdfz-radius: 8px;
+  --vue-pdfz-spacing: 8px;
+  --vue-pdfz-page-gap: 28px;
 
-  --vue-pdfx-font-family:
+  --vue-pdfz-font-family:
     system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --vue-pdfx-font-size: 14px;
+  --vue-pdfz-font-size: 14px;
 
-  --vue-pdfx-shadow: 0 1px 2px rgba(16, 18, 22, 0.08);
-  --vue-pdfx-shadow-elevated: 0 4px 14px rgba(16, 18, 22, 0.18);
-  --vue-pdfx-shadow-popover: 0 4px 14px rgba(16, 18, 22, 0.12);
-  --vue-pdfx-shadow-page: 0 1px 3px rgba(16, 18, 22, 0.14), 0 12px 32px rgba(16, 18, 22, 0.1);
+  --vue-pdfz-shadow: 0 1px 2px rgba(16, 18, 22, 0.08);
+  --vue-pdfz-shadow-elevated: 0 4px 14px rgba(16, 18, 22, 0.18);
+  --vue-pdfz-shadow-popover: 0 4px 14px rgba(16, 18, 22, 0.12);
+  --vue-pdfz-shadow-page: 0 1px 3px rgba(16, 18, 22, 0.14), 0 12px 32px rgba(16, 18, 22, 0.1);
 
-  --vue-pdfx-ease: cubic-bezier(0, 0, 0.2, 1);
-  --vue-pdfx-duration: 120ms;
-  --vue-pdfx-duration-slow: 240ms;
-  --vue-pdfx-transition: var(--vue-pdfx-duration) var(--vue-pdfx-ease);
+  --vue-pdfz-ease: cubic-bezier(0, 0, 0.2, 1);
+  --vue-pdfz-duration: 120ms;
+  --vue-pdfz-duration-slow: 240ms;
+  --vue-pdfz-transition: var(--vue-pdfz-duration) var(--vue-pdfz-ease);
 }
 
 @media (pointer: coarse) {
-  .vue-pdfx-viewer {
-    --vue-pdfx-control-size: 44px;
+  .vue-pdfz-viewer {
+    --vue-pdfz-control-size: 44px;
   }
 }
 
-.vue-pdfx-viewer.vue-pdfx-viewer--compact {
-  --vue-pdfx-toolbar-height: 56px;
+.vue-pdfz-viewer.vue-pdfz-viewer--compact {
+  --vue-pdfz-toolbar-height: 56px;
 }
 
-.vue-pdfx-viewer[data-theme='dark'] {
-  --vue-pdfx-color-bg: #141619;
-  --vue-pdfx-color-surface: #1e2126;
-  --vue-pdfx-color-surface-active: #2b2f36;
-  --vue-pdfx-color-border: #31353c;
-  --vue-pdfx-color-border-strong: #3e434c;
-  --vue-pdfx-color-text: #f1f3f5;
-  --vue-pdfx-color-text-secondary: #a6adb6;
-  --vue-pdfx-color-text-muted: #6f767f;
+.vue-pdfz-viewer[data-theme='dark'] {
+  --vue-pdfz-color-bg: #141619;
+  --vue-pdfz-color-surface: #1e2126;
+  --vue-pdfz-color-surface-active: #2b2f36;
+  --vue-pdfz-color-border: #31353c;
+  --vue-pdfz-color-border-strong: #3e434c;
+  --vue-pdfz-color-text: #f1f3f5;
+  --vue-pdfz-color-text-secondary: #a6adb6;
+  --vue-pdfz-color-text-muted: #6f767f;
 
-  --vue-pdfx-color-primary: #f4f5f6;
-  --vue-pdfx-color-primary-hover: #e2e4e7;
-  --vue-pdfx-color-primary-contrast: #0e0e10;
+  --vue-pdfz-color-primary: #f4f5f6;
+  --vue-pdfz-color-primary-hover: #e2e4e7;
+  --vue-pdfz-color-primary-contrast: #0e0e10;
 
-  --vue-pdfx-color-toolbar-bg: #1e2126;
-  --vue-pdfx-color-toolbar-text: #f1f3f5;
-  --vue-pdfx-color-sidebar-bg: #1e2126;
-  --vue-pdfx-color-page: #ffffff;
-  --vue-pdfx-color-hover: #2b2f36;
+  --vue-pdfz-color-toolbar-bg: #1e2126;
+  --vue-pdfz-color-toolbar-text: #f1f3f5;
+  --vue-pdfz-color-sidebar-bg: #1e2126;
+  --vue-pdfz-color-page: #ffffff;
+  --vue-pdfz-color-hover: #2b2f36;
 
-  --vue-pdfx-color-focus-ring: #5e93ff;
-  --vue-pdfx-color-highlight: #ffe28a;
-  --vue-pdfx-color-highlight-active: #ffae34;
-  --vue-pdfx-color-danger: #ff6b5e;
-  --vue-pdfx-color-backdrop: rgba(0, 0, 0, 0.5);
+  --vue-pdfz-color-focus-ring: #5e93ff;
+  --vue-pdfz-color-highlight: #ffe28a;
+  --vue-pdfz-color-highlight-active: #ffae34;
+  --vue-pdfz-color-danger: #ff6b5e;
+  --vue-pdfz-color-backdrop: rgba(0, 0, 0, 0.5);
 
-  --vue-pdfx-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --vue-pdfx-shadow-elevated: 0 8px 22px rgba(0, 0, 0, 0.5);
-  --vue-pdfx-shadow-popover: 0 10px 28px rgba(0, 0, 0, 0.5);
-  --vue-pdfx-shadow-page: 0 2px 8px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.3);
+  --vue-pdfz-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --vue-pdfz-shadow-elevated: 0 8px 22px rgba(0, 0, 0, 0.5);
+  --vue-pdfz-shadow-popover: 0 10px 28px rgba(0, 0, 0, 0.5);
+  --vue-pdfz-shadow-page: 0 2px 8px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.3);
 }
 
 @media (prefers-color-scheme: dark) {
-  .vue-pdfx-viewer[data-theme='auto'] {
-    --vue-pdfx-color-bg: #141619;
-    --vue-pdfx-color-surface: #1e2126;
-    --vue-pdfx-color-surface-active: #2b2f36;
-    --vue-pdfx-color-border: #31353c;
-    --vue-pdfx-color-border-strong: #3e434c;
-    --vue-pdfx-color-text: #f1f3f5;
-    --vue-pdfx-color-text-secondary: #a6adb6;
-    --vue-pdfx-color-text-muted: #6f767f;
+  .vue-pdfz-viewer[data-theme='auto'] {
+    --vue-pdfz-color-bg: #141619;
+    --vue-pdfz-color-surface: #1e2126;
+    --vue-pdfz-color-surface-active: #2b2f36;
+    --vue-pdfz-color-border: #31353c;
+    --vue-pdfz-color-border-strong: #3e434c;
+    --vue-pdfz-color-text: #f1f3f5;
+    --vue-pdfz-color-text-secondary: #a6adb6;
+    --vue-pdfz-color-text-muted: #6f767f;
 
-    --vue-pdfx-color-primary: #f4f5f6;
-    --vue-pdfx-color-primary-hover: #e2e4e7;
-    --vue-pdfx-color-primary-contrast: #0e0e10;
+    --vue-pdfz-color-primary: #f4f5f6;
+    --vue-pdfz-color-primary-hover: #e2e4e7;
+    --vue-pdfz-color-primary-contrast: #0e0e10;
 
-    --vue-pdfx-color-toolbar-bg: #1e2126;
-    --vue-pdfx-color-toolbar-text: #f1f3f5;
-    --vue-pdfx-color-sidebar-bg: #1e2126;
-    --vue-pdfx-color-page: #ffffff;
-    --vue-pdfx-color-hover: #2b2f36;
+    --vue-pdfz-color-toolbar-bg: #1e2126;
+    --vue-pdfz-color-toolbar-text: #f1f3f5;
+    --vue-pdfz-color-sidebar-bg: #1e2126;
+    --vue-pdfz-color-page: #ffffff;
+    --vue-pdfz-color-hover: #2b2f36;
 
-    --vue-pdfx-color-focus-ring: #5e93ff;
-    --vue-pdfx-color-highlight: #ffe28a;
-    --vue-pdfx-color-highlight-active: #ffae34;
-    --vue-pdfx-color-danger: #ff6b5e;
-    --vue-pdfx-color-backdrop: rgba(0, 0, 0, 0.5);
+    --vue-pdfz-color-focus-ring: #5e93ff;
+    --vue-pdfz-color-highlight: #ffe28a;
+    --vue-pdfz-color-highlight-active: #ffae34;
+    --vue-pdfz-color-danger: #ff6b5e;
+    --vue-pdfz-color-backdrop: rgba(0, 0, 0, 0.5);
 
-    --vue-pdfx-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-    --vue-pdfx-shadow-elevated: 0 8px 22px rgba(0, 0, 0, 0.5);
-    --vue-pdfx-shadow-popover: 0 10px 28px rgba(0, 0, 0, 0.5);
-    --vue-pdfx-shadow-page: 0 2px 8px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.3);
+    --vue-pdfz-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --vue-pdfz-shadow-elevated: 0 8px 22px rgba(0, 0, 0, 0.5);
+    --vue-pdfz-shadow-popover: 0 10px 28px rgba(0, 0, 0, 0.5);
+    --vue-pdfz-shadow-page: 0 2px 8px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.3);
   }
 }

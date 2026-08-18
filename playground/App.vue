@@ -8,7 +8,7 @@ import {
   type Rotation,
   type ThemeMode,
   type ZoomValue,
-} from 'vue-pdfx'
+} from 'vue-pdfz'
 
 const samples: Record<string, string> = {
   'Text (5 pages)': '/samples/sample-text.pdf',
@@ -85,7 +85,7 @@ function log(message: string): void {
 <template>
   <div class="app">
     <div class="app__bar">
-      <h1>vue-pdfx</h1>
+      <h1>vue-pdfz</h1>
 
       <label>
         Sample

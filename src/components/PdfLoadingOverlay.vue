@@ -20,13 +20,13 @@ const loadbarWidth = computed(() => {
 </script>
 
 <template>
-  <div class="vue-pdfx-overlay" role="status">
-    <div class="vue-pdfx-loadbar" aria-hidden="true">
-      <div class="vue-pdfx-loadbar__seg" :style="{ inlineSize: loadbarWidth }" />
+  <div class="vue-pdfz-overlay" role="status">
+    <div class="vue-pdfz-loadbar" aria-hidden="true">
+      <div class="vue-pdfz-loadbar__seg" :style="{ inlineSize: loadbarWidth }" />
     </div>
 
-    <div class="vue-pdfx-loading">
-      <span class="vue-pdfx-spinner" aria-hidden="true" />
+    <div class="vue-pdfz-loading">
+      <span class="vue-pdfz-spinner" aria-hidden="true" />
       <span>{{ t('loading') }}</span>
     </div>
   </div>

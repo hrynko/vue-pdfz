@@ -7,7 +7,7 @@ import type {
   LinkTarget,
 } from '../types'
 
-const ENHANCED_ATTR = 'data-vue-pdfx-enhanced'
+const ENHANCED_ATTR = 'data-vue-pdfz-enhanced'
 
 function isExternalHref(href: string | null): boolean {
   if (!href || href.startsWith('#')) {

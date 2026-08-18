@@ -90,23 +90,23 @@ defineExpose({
 </script>
 
 <template>
-  <div class="vue-pdfx-searchbar" role="search">
-    <div class="vue-pdfx-searchbar__field">
-      <span class="vue-pdfx-searchbar__leading" aria-hidden="true"><SearchIcon /></span>
+  <div class="vue-pdfz-searchbar" role="search">
+    <div class="vue-pdfz-searchbar__field">
+      <span class="vue-pdfz-searchbar__leading" aria-hidden="true"><SearchIcon /></span>
 
       <input
         ref="inputEl"
         v-model="query"
         type="text"
-        class="vue-pdfx-searchbar__input"
+        class="vue-pdfz-searchbar__input"
         :aria-label="t('searchPlaceholder')"
         :placeholder="t('searchPlaceholder')"
         @keydown.enter.prevent="handleEnter"
         @keydown.esc.prevent="emit('close')"
       />
 
-      <span class="vue-pdfx-searchbar__count" aria-live="polite">
-        <Transition name="vue-pdfx-count" mode="out-in">
+      <span class="vue-pdfz-searchbar__count" aria-live="polite">
+        <Transition name="vue-pdfz-count" mode="out-in">
           <span v-if="!searching && !pending && total > 0" key="matches">
             {{ t('matchesCount', { current, total }) }}
           </span>
@@ -117,11 +117,11 @@ defineExpose({
       </span>
     </div>
 
-    <div class="vue-pdfx-searchbar__controls">
-      <div class="vue-pdfx-searchbar__nav">
+    <div class="vue-pdfz-searchbar__controls">
+      <div class="vue-pdfz-searchbar__nav">
         <button
           type="button"
-          class="vue-pdfx-btn"
+          class="vue-pdfz-btn"
           :aria-label="t('searchPrevious')"
           :disabled="total === 0"
           :title="t('searchPrevious')"
@@ -132,7 +132,7 @@ defineExpose({
 
         <button
           type="button"
-          class="vue-pdfx-btn"
+          class="vue-pdfz-btn"
           :aria-label="t('searchNext')"
           :disabled="total === 0"
           :title="t('searchNext')"
@@ -144,18 +144,18 @@ defineExpose({
 
       <span
         v-if="controls?.caseSensitive || controls?.entireWord"
-        class="vue-pdfx-searchbar__divider"
+        class="vue-pdfz-searchbar__divider"
       />
 
       <div
         v-if="controls?.caseSensitive || controls?.entireWord"
-        class="vue-pdfx-searchbar__toggles"
+        class="vue-pdfz-searchbar__toggles"
       >
         <button
           v-if="controls?.caseSensitive"
           type="button"
-          class="vue-pdfx-btn vue-pdfx-searchbar__toggle"
-          :class="{ 'vue-pdfx-btn--active': caseSensitive }"
+          class="vue-pdfz-btn vue-pdfz-searchbar__toggle"
+          :class="{ 'vue-pdfz-btn--active': caseSensitive }"
           :aria-label="t('caseSensitive')"
           :aria-pressed="caseSensitive"
           :title="t('caseSensitive')"
@@ -167,8 +167,8 @@ defineExpose({
         <button
           v-if="controls?.entireWord"
           type="button"
-          class="vue-pdfx-btn vue-pdfx-searchbar__toggle vue-pdfx-searchbar__toggle--word"
-          :class="{ 'vue-pdfx-btn--active': entireWord }"
+          class="vue-pdfz-btn vue-pdfz-searchbar__toggle vue-pdfz-searchbar__toggle--word"
+          :class="{ 'vue-pdfz-btn--active': entireWord }"
           :aria-label="t('entireWord')"
           :aria-pressed="entireWord"
           :title="t('entireWord')"
@@ -179,11 +179,11 @@ defineExpose({
       </div>
     </div>
 
-    <span class="vue-pdfx-searchbar__divider vue-pdfx-searchbar__divider--trailing" />
+    <span class="vue-pdfz-searchbar__divider vue-pdfz-searchbar__divider--trailing" />
 
     <button
       type="button"
-      class="vue-pdfx-btn vue-pdfx-searchbar__close"
+      class="vue-pdfz-btn vue-pdfz-searchbar__close"
       :aria-label="t('closeSearch')"
       :title="t('closeSearch')"
       @click="emit('close')"

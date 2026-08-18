@@ -1,12 +1,12 @@
 import type { App, Plugin } from 'vue'
 
-import type { VuePdfxPluginOptions } from './types'
-import { VuePdfxConfigKey } from './context'
+import type { VuePdfzPluginOptions } from './types'
+import { VuePdfzConfigKey } from './context'
 import { PdfViewer } from './components/PdfViewer.lazy'
 
-export const VuePdfx: Plugin<[VuePdfxPluginOptions?]> = {
-  install(app: App, options: VuePdfxPluginOptions = {}) {
-    app.provide(VuePdfxConfigKey, {
+export const VuePdfz: Plugin<[VuePdfzPluginOptions?]> = {
+  install(app: App, options: VuePdfzPluginOptions = {}) {
+    app.provide(VuePdfzConfigKey, {
       ...(options.i18nAdapter !== undefined ? { i18nAdapter: options.i18nAdapter } : {}),
       ...(options.locale !== undefined ? { locale: options.locale } : {}),
       ...(options.messages !== undefined ? { messages: options.messages } : {}),
@@ -21,4 +21,4 @@ export const VuePdfx: Plugin<[VuePdfxPluginOptions?]> = {
   },
 }
 
-export default VuePdfx
+export default VuePdfz

@@ -8,11 +8,11 @@ defineProps<{
 </script>
 
 <template>
-  <div class="vue-pdfx-overlay">
-    <div class="vue-pdfx-overlay__icon">
+  <div class="vue-pdfz-overlay">
+    <div class="vue-pdfz-overlay__icon">
       <FileIcon />
     </div>
 
-    <p class="vue-pdfx-overlay__title">{{ t('empty') }}</p>
+    <p class="vue-pdfz-overlay__title">{{ t('empty') }}</p>
   </div>
 </template>

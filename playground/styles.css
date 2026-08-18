@@ -88,10 +88,10 @@ body {
   height: 100%;
 }
 
-.accent-blue .vue-pdfx-viewer {
-  --vue-pdfx-color-primary: #2f6bff;
-  --vue-pdfx-color-primary-hover: #1f54da;
-  --vue-pdfx-color-primary-contrast: #ffffff;
+.accent-blue .vue-pdfz-viewer {
+  --vue-pdfz-color-primary: #2f6bff;
+  --vue-pdfz-color-primary-hover: #1f54da;
+  --vue-pdfz-color-primary-contrast: #ffffff;
 }
 
 .watermark {

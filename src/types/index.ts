@@ -156,7 +156,7 @@ export interface LinkClickPayload {
 export type ThemeMode = 'auto' | 'dark' | 'light'
 
 /**
- * Design tokens. Every value maps to a `--vue-pdfx-*` CSS custom property.
+ * Design tokens. Every value maps to a `--vue-pdfz-*` CSS custom property.
  */
 export interface ThemeTokens {
   colorBackdrop?: string
@@ -328,7 +328,7 @@ export interface I18nAdapter {
  * Plugin options
  * ------------------------------------------------------------------ */
 
-export interface VuePdfxPluginOptions {
+export interface VuePdfzPluginOptions {
   /** Optional host i18n adapter (e.g. a vue-i18n bridge). */
   i18nAdapter?: I18nAdapter
   /** Default locale code for all viewers. Defaults to `'en'`. */

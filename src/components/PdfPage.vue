@@ -204,14 +204,14 @@ onBeforeUnmount(() => {
 <template>
   <div
     ref="root"
-    class="vue-pdfx-page"
-    :class="{ 'vue-pdfx-page--rendered': isRendered }"
+    class="vue-pdfz-page"
+    :class="{ 'vue-pdfz-page--rendered': isRendered }"
     :style="rootStyle"
     :aria-label="t('thumbnailLabel', { page: pageNumber })"
     :data-page="pageNumber"
     role="region"
   >
-    <div ref="inner" class="vue-pdfx-page__inner" :style="innerStyle">
+    <div ref="inner" class="vue-pdfz-page__inner" :style="innerStyle">
       <VuePdfEmbed
         v-if="shouldRender && renderWidth"
         :annotation-layer="annotationLayer"
@@ -230,7 +230,7 @@ onBeforeUnmount(() => {
 
       <div
         v-else
-        class="vue-pdfx-page__placeholder"
+        class="vue-pdfz-page__placeholder"
         :style="{
           width: cssWidth != null ? `${cssWidth}px` : '100%',
           height: cssHeight != null ? `${cssHeight}px` : '140px',
@@ -238,7 +238,7 @@ onBeforeUnmount(() => {
         aria-hidden="true"
       />
 
-      <div v-if="$slots['page-overlay']" class="vue-pdfx-page-overlay">
+      <div v-if="$slots['page-overlay']" class="vue-pdfz-page-overlay">
         <slot name="page-overlay" :page-number="pageNumber" :scale="scale" />
       </div>
     </div>

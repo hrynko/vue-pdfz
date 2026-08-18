@@ -12,7 +12,7 @@ function icon(name: string, shapes: SvgShape[]): FunctionalComponent {
         viewBox: '0 0 20 20',
         width: '20',
         height: '20',
-        class: 'vue-pdfx-icon',
+        class: 'vue-pdfz-icon',
         'aria-hidden': 'true',
         focusable: 'false',
       },

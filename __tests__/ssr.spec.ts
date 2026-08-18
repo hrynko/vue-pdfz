@@ -17,14 +17,14 @@ describe('SSR safety', () => {
   it('renders a loaded document to a string without touching browser-only APIs', async () => {
     globalThis.__VPE_MOCK_DOC__ = makeFakeDoc()
     const html = await renderToString(createSSRApp(PdfViewer, { source: '/test.pdf' }))
-    expect(html).toContain('vue-pdfx-viewer')
-    expect(html).toContain('vue-pdfx-toolbar')
-    expect(html).not.toContain('vue-pdfx-overlay')
+    expect(html).toContain('vue-pdfz-viewer')
+    expect(html).toContain('vue-pdfz-toolbar')
+    expect(html).not.toContain('vue-pdfz-overlay')
   })
 
   it('renders the empty state for an absent source', async () => {
     const html = await renderToString(createSSRApp(PdfViewer, { source: '' }))
-    expect(html).toContain('vue-pdfx-viewer')
-    expect(html).toContain('vue-pdfx-overlay__title')
+    expect(html).toContain('vue-pdfz-viewer')
+    expect(html).toContain('vue-pdfz-overlay__title')
   })
 })

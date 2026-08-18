@@ -25,15 +25,15 @@ const message = computed(() => props.t(ERROR_MESSAGE_KEYS[props.error.code] ?? '
 </script>
 
 <template>
-  <div class="vue-pdfx-overlay" role="alert">
-    <div class="vue-pdfx-overlay__icon">
+  <div class="vue-pdfz-overlay" role="alert">
+    <div class="vue-pdfz-overlay__icon">
       <AlertIcon />
     </div>
 
-    <p class="vue-pdfx-overlay__title">{{ t('errorTitle') }}</p>
-    <p class="vue-pdfx-overlay__message">{{ message }}</p>
+    <p class="vue-pdfz-overlay__title">{{ t('errorTitle') }}</p>
+    <p class="vue-pdfz-overlay__message">{{ message }}</p>
 
-    <button type="button" class="vue-pdfx-btn--action" @click="$emit('retry')">
+    <button type="button" class="vue-pdfz-btn--action" @click="$emit('retry')">
       {{ t('retry') }}
     </button>
   </div>

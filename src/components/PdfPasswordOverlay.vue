@@ -22,21 +22,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="vue-pdfx-overlay">
-    <div class="vue-pdfx-overlay__icon">
+  <div class="vue-pdfz-overlay">
+    <div class="vue-pdfz-overlay__icon">
       <LockIcon />
     </div>
 
-    <p class="vue-pdfx-overlay__title">{{ t('passwordTitle') }}</p>
-    <p class="vue-pdfx-overlay__message">{{ t('passwordPrompt') }}</p>
+    <p class="vue-pdfz-overlay__title">{{ t('passwordTitle') }}</p>
+    <p class="vue-pdfz-overlay__message">{{ t('passwordPrompt') }}</p>
 
-    <form class="vue-pdfx-overlay__form" @submit.prevent="emit('submit', password)">
+    <form class="vue-pdfz-overlay__form" @submit.prevent="emit('submit', password)">
       <input
         ref="inputEl"
         v-model="password"
         type="password"
-        class="vue-pdfx-input vue-pdfx-password-input"
-        :class="{ 'vue-pdfx-input--invalid': error }"
+        class="vue-pdfz-input vue-pdfz-password-input"
+        :class="{ 'vue-pdfz-input--invalid': error }"
         :aria-invalid="error"
         :aria-label="t('passwordPlaceholder')"
         :placeholder="t('passwordPlaceholder')"
@@ -44,13 +44,13 @@ onMounted(() => {
         @input="error && (error = false)"
       />
 
-      <Transition name="vue-pdfx-msg">
-        <p v-if="error" class="vue-pdfx-overlay__message vue-pdfx-overlay__message--error">
+      <Transition name="vue-pdfz-msg">
+        <p v-if="error" class="vue-pdfz-overlay__message vue-pdfz-overlay__message--error">
           {{ t('passwordIncorrect') }}
         </p>
       </Transition>
 
-      <button type="submit" class="vue-pdfx-btn--action">
+      <button type="submit" class="vue-pdfz-btn--action">
         {{ t('passwordSubmit') }}
       </button>
     </form>

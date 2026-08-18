@@ -1,5 +1,5 @@
 {
-  "name": "vue-pdfx",
+  "name": "vue-pdfz",
   "version": "1.0.0",
   "description": "A customizable, i18n-ready, SSR-safe PDF viewer for Vue",
   "keywords": [
@@ -9,7 +9,7 @@
     "pdf",
     "pdf-viewer"
   ],
-  "repository": "github:hrynko/vue-pdfx",
+  "repository": "github:hrynko/vue-pdfz",
   "license": "MIT",
   "author": "Aliaksei Hrynko (https://github.com/hrynko)",
   "sideEffects": [

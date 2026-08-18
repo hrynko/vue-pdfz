@@ -139,10 +139,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="vue-pdfx-thumbnails">
+  <div class="vue-pdfz-thumbnails">
     <div
       ref="listEl"
-      class="vue-pdfx-thumbnails__list"
+      class="vue-pdfz-thumbnails__list"
       :aria-label="t('thumbnailsTitle')"
       role="listbox"
       tabindex="0"
@@ -154,8 +154,8 @@ onBeforeUnmount(() => {
         :key="page"
         :ref="(el) => setItemRef(page, el as Element | null)"
         type="button"
-        class="vue-pdfx-thumb"
-        :class="{ 'vue-pdfx-thumb--active': page === currentPage }"
+        class="vue-pdfz-thumb"
+        :class="{ 'vue-pdfz-thumb--active': page === currentPage }"
         :aria-label="t('thumbnailLabel', { page })"
         :aria-selected="page === currentPage"
         :data-page="page"
@@ -164,7 +164,7 @@ onBeforeUnmount(() => {
       >
         <slot name="thumbnail" :is-active="page === currentPage" :page="page" :src="sources[page]">
           <span
-            class="vue-pdfx-thumb__frame"
+            class="vue-pdfz-thumb__frame"
             :style="{
               inlineSize: `${thumbnailWidth}px`,
               aspectRatio: aspects[page] ? `1 / ${aspects[page]}` : '1 / 1.414',
@@ -172,7 +172,7 @@ onBeforeUnmount(() => {
           >
             <img
               v-if="sources[page]"
-              class="vue-pdfx-thumb__canvas"
+              class="vue-pdfz-thumb__canvas"
               :alt="t('thumbnailLabel', { page })"
               :src="sources[page]"
               loading="lazy"
@@ -180,8 +180,8 @@ onBeforeUnmount(() => {
           </span>
 
           <span
-            class="vue-pdfx-thumb__label"
-            :class="{ 'vue-pdfx-thumb__label--active': page === currentPage }"
+            class="vue-pdfz-thumb__label"
+            :class="{ 'vue-pdfz-thumb__label--active': page === currentPage }"
           >
             {{ page }}
           </span>

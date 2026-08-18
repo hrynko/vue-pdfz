@@ -21,7 +21,7 @@ import type {
   ThemeTokens,
   ZoomValue,
 } from '../types'
-import { useVuePdfxConfig } from '../context'
+import { useVuePdfzConfig } from '../context'
 import { ensureReadableStreamAsyncIterator } from '../polyfills'
 import { clamp, isClient, throttle } from '../utils'
 import { useI18n } from '../i18n'
@@ -121,7 +121,7 @@ const emit = defineEmits<{
   rendered: [page: number]
 }>()
 
-const config = useVuePdfxConfig()
+const config = useVuePdfzConfig()
 const containerSize = shallowRef<{ width: number; height: number } | null>(null)
 const isDownloading = ref(false)
 const isPrinting = ref(false)
@@ -143,7 +143,7 @@ const themeVars = computed<Record<string, string>>(() => {
     if (value == null) {
       continue
     }
-    const cssVar = '--vue-pdfx-' + key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())
+    const cssVar = '--vue-pdfz-' + key.replace(/[A-Z]/g, (m) => '-' + m.toLowerCase())
     vars[cssVar] = String(value)
   }
   return vars
@@ -208,7 +208,7 @@ const search = useSearch({
 })
 
 /* ---------------------------- virtualization ---------------------------- */
-const PAGE_GAP = 28 // --vue-pdfx-page-gap
+const PAGE_GAP = 28 // --vue-pdfz-page-gap
 const estimatedPageHeight = computed(() => (pageSize.value?.height ?? 800) * scale.value)
 const isContinuous = computed(() => props.layout === 'continuous' || props.layout === 'facing')
 const {
@@ -254,9 +254,9 @@ const isSidebarDrawer = computed(() => isCompact.value && isSidebarVisible.value
 const sidebarTransition = computed(() =>
   shouldAnimateSidebar.value
     ? isSidebarDrawer.value
-      ? 'vue-pdfx-drawer'
-      : 'vue-pdfx-sidebar'
-    : 'vue-pdfx-none',
+      ? 'vue-pdfz-drawer'
+      : 'vue-pdfz-sidebar'
+    : 'vue-pdfz-none',
 )
 
 watch(
@@ -631,7 +631,7 @@ watch(scale, (newScale, oldScale) => {
   const anchorClientY = mainRect.top + anchorY
   let anchorPage: HTMLElement | null = null
   let nearestDistance = Infinity
-  for (const pageEl of el.querySelectorAll<HTMLElement>('.vue-pdfx-page')) {
+  for (const pageEl of el.querySelectorAll<HTMLElement>('.vue-pdfz-page')) {
     const rect = pageEl.getBoundingClientRect()
     const dx =
       anchorClientX < rect.left
@@ -679,17 +679,17 @@ function scrollToSelectedMatch(): boolean {
   if (!main) {
     return false
   }
-  const selected = main.querySelector<HTMLElement>('.vue-pdfx-page .textLayer .highlight.selected')
+  const selected = main.querySelector<HTMLElement>('.vue-pdfz-page .textLayer .highlight.selected')
   const fallback =
     search.currentPage.value > 0
-      ? main.querySelector<HTMLElement>(`.vue-pdfx-page[data-page="${search.currentPage.value}"]`)
+      ? main.querySelector<HTMLElement>(`.vue-pdfz-page[data-page="${search.currentPage.value}"]`)
       : null
   const target = selected ?? fallback
   if (!target) {
     return false
   }
   const mainRect = main.getBoundingClientRect()
-  const bar = rootEl.value?.querySelector<HTMLElement>('.vue-pdfx-searchbar')
+  const bar = rootEl.value?.querySelector<HTMLElement>('.vue-pdfz-searchbar')
   let inset = PAGE_GAP
   if (bar) {
     const barRect = bar.getBoundingClientRect()
@@ -796,12 +796,12 @@ defineExpose({
 <template>
   <div
     ref="rootEl"
-    class="vue-pdfx-viewer"
+    class="vue-pdfz-viewer"
     :class="[
-      `vue-pdfx-layout-${layout}`,
+      `vue-pdfz-layout-${layout}`,
       {
-        'vue-pdfx-viewer--compact': isCompact,
-        'vue-pdfx-viewer--searching': isSearchOpen && enableSearch && isDocumentReady,
+        'vue-pdfz-viewer--compact': isCompact,
+        'vue-pdfz-viewer--searching': isSearchOpen && enableSearch && isDocumentReady,
       },
     ]"
     :aria-busy="isLoading"
@@ -811,7 +811,7 @@ defineExpose({
     :style="themeVars"
     tabindex="0"
   >
-    <div class="vue-pdfx-sr-only" aria-live="polite" role="status">
+    <div class="vue-pdfz-sr-only" aria-live="polite" role="status">
       {{ liveMessage }}
     </div>
 
@@ -873,15 +873,15 @@ defineExpose({
       </PdfToolbar>
     </slot>
 
-    <div class="vue-pdfx-body">
+    <div class="vue-pdfz-body">
       <Transition :name="sidebarTransition">
         <aside
           v-if="isSidebarVisible && doc"
-          class="vue-pdfx-sidebar"
-          :class="{ 'vue-pdfx-sidebar--drawer': isSidebarDrawer }"
+          class="vue-pdfz-sidebar"
+          :class="{ 'vue-pdfz-sidebar--drawer': isSidebarDrawer }"
           :aria-label="i18n.t('thumbnailsTitle')"
         >
-          <div class="vue-pdfx-sidebar__inner">
+          <div class="vue-pdfz-sidebar__inner">
             <slot name="thumbnails" :go-to-page="goToPage" :page="page" :page-count="pageCount">
               <PdfThumbnails
                 :current-page="page"
@@ -900,24 +900,24 @@ defineExpose({
         </aside>
       </Transition>
 
-      <Transition name="vue-pdfx-backdrop-fade">
+      <Transition name="vue-pdfz-backdrop-fade">
         <button
           v-if="isSidebarDrawer"
           type="button"
-          class="vue-pdfx-backdrop"
+          class="vue-pdfz-backdrop"
           :aria-label="i18n.t('toggleThumbnails')"
           @click="isSidebarOpen = false"
         />
       </Transition>
 
-      <div class="vue-pdfx-content">
+      <div class="vue-pdfz-content">
         <Transition
-          name="vue-pdfx-search"
+          name="vue-pdfz-search"
           @enter="handleSearchEnter"
           @after-enter="handleSearchAfterEnter"
           @leave="handleSearchLeave"
         >
-          <div v-if="isSearchOpen && enableSearch && isDocumentReady" class="vue-pdfx-search-slot">
+          <div v-if="isSearchOpen && enableSearch && isDocumentReady" class="vue-pdfz-search-slot">
             <slot
               name="search-bar"
               :close="closeSearch"
@@ -945,7 +945,7 @@ defineExpose({
 
         <div
           ref="mainEl"
-          class="vue-pdfx-main"
+          class="vue-pdfz-main"
           @touchend="handleTouchEnd"
           @touchmove="handleTouchMove"
           @touchstart="handleTouchStart"
@@ -953,13 +953,13 @@ defineExpose({
         >
           <div
             v-if="doc && pageSize"
-            class="vue-pdfx-pages"
-            :class="{ 'vue-pdfx-pages--facing': layout === 'facing' }"
+            class="vue-pdfz-pages"
+            :class="{ 'vue-pdfz-pages--facing': layout === 'facing' }"
             :style="
               virtualization && isContinuous
                 ? {
-                    paddingBlockStart: `calc(var(--vue-pdfx-page-gap) + ${topSpacer}px)`,
-                    paddingBlockEnd: `calc(var(--vue-pdfx-page-gap) + ${bottomSpacer}px)`,
+                    paddingBlockStart: `calc(var(--vue-pdfz-page-gap) + ${topSpacer}px)`,
+                    paddingBlockEnd: `calc(var(--vue-pdfz-page-gap) + ${bottomSpacer}px)`,
                   }
                 : undefined
             "
@@ -993,28 +993,28 @@ defineExpose({
             </PdfPage>
           </div>
 
-          <Transition name="vue-pdfx-fade">
+          <Transition name="vue-pdfz-fade">
             <slot v-if="!hasSource && !isLoading" name="empty">
               <PdfEmptyOverlay :t="i18n.t" />
             </slot>
           </Transition>
         </div>
 
-        <Transition name="vue-pdfx-fade">
-          <div v-if="isPinching || isPillVisible" class="vue-pdfx-zoom-pill" aria-hidden="true">
+        <Transition name="vue-pdfz-fade">
+          <div v-if="isPinching || isPillVisible" class="vue-pdfz-zoom-pill" aria-hidden="true">
             {{ Math.round(scale * 100) }}%
           </div>
         </Transition>
       </div>
 
-      <Transition name="vue-pdfx-fade">
+      <Transition name="vue-pdfz-fade">
         <slot v-if="isLoading && !error && !isPasswordRequired" name="loading" :progress="progress">
           <PdfLoadingOverlay :progress="progress" :t="i18n.t" />
         </slot>
       </Transition>
     </div>
 
-    <Transition name="vue-pdfx-fade">
+    <Transition name="vue-pdfz-fade">
       <slot
         v-if="isPasswordRequired"
         name="password"
@@ -1029,7 +1029,7 @@ defineExpose({
       </slot>
     </Transition>
 
-    <Transition name="vue-pdfx-fade">
+    <Transition name="vue-pdfz-fade">
       <slot v-if="error" name="error" :error="error" :retry="reload">
         <PdfErrorOverlay :error="error" :t="i18n.t" @retry="reload" />
       </slot>
