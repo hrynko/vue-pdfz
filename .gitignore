@@ -4,4 +4,4 @@
 coverage/
 dist/
 node_modules/
-playground/dist/
+packages/playground/dist/

@@ -7,11 +7,11 @@ export default defineConfig(
   {
     ignores: [
       '**/*.d.ts',
+      '**/dist/**',
       'coverage/**',
-      'dist/**',
       'node_modules/**',
-      'playground/dist/**',
-      'playground/public/**',
+      'packages/playground/dist/**',
+      'packages/playground/public/**',
     ],
   },
   js.configs.recommended,
@@ -54,7 +54,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['__tests__/**', 'playground/**'],
+    files: ['packages/playground/**', 'packages/vue-pdfz/__tests__/**'],
     rules: {
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',

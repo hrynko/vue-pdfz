@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "vue-pdfz": ["../vue-pdfz/src/index.ts"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.vue"],
+  "exclude": ["dist", "node_modules", "public"]
+}

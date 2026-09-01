@@ -1,0 +1,11 @@
+{
+  "name": "playground",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "samples": "node generate-samples.mjs",
+    "dev": "node generate-samples.mjs && vite",
+    "build": "node generate-samples.mjs && vite build",
+    "preview": "vite preview"
+  }
+}

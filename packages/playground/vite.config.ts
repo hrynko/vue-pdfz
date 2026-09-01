@@ -39,11 +39,11 @@ export default defineConfig({
     alias: [
       {
         find: 'vue-pdfz/style.css',
-        replacement: fileURLToPath(new URL('../src/theme/default.css', import.meta.url)),
+        replacement: fileURLToPath(new URL('../vue-pdfz/src/theme/default.css', import.meta.url)),
       },
       {
         find: /^vue-pdfz$/,
-        replacement: fileURLToPath(new URL('../src/index.ts', import.meta.url)),
+        replacement: fileURLToPath(new URL('../vue-pdfz/src/index.ts', import.meta.url)),
       },
     ],
   },

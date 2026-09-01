@@ -1,0 +1,63 @@
+{
+  "name": "vue-pdfz",
+  "version": "1.0.0",
+  "description": "A customizable, i18n-ready, SSR-safe PDF viewer for Vue",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "vue3",
+    "pdf",
+    "pdf-viewer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrynko/vue-pdfz.git",
+    "directory": "packages/vue-pdfz"
+  },
+  "license": "MIT",
+  "author": "Aliaksei Hrynko (https://github.com/hrynko)",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css",
+    "./locales/*": {
+      "types": "./dist/i18n/locales/*.d.ts",
+      "import": "./dist/locales/*.js",
+      "require": "./dist/locales/*.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "vue-tsc --noEmit -p tsconfig.build.json && vite build",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "vue-pdf-embed": "^2.1.5"
+  },
+  "peerDependencies": {
+    "pdfjs-dist": "^5.7.284",
+    "vue": "^3.4.0"
+  },
+  "peerDependenciesMeta": {
+    "pdfjs-dist": {
+      "optional": true
+    }
+  }
+}

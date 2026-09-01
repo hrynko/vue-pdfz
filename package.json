@@ -1,60 +1,20 @@
 {
-  "name": "vue-pdfz",
-  "version": "1.0.0",
-  "description": "A customizable, i18n-ready, SSR-safe PDF viewer for Vue",
-  "keywords": [
-    "vue",
-    "vuejs",
-    "vue3",
-    "pdf",
-    "pdf-viewer"
-  ],
-  "repository": "github:hrynko/vue-pdfz",
-  "license": "MIT",
-  "author": "Aliaksei Hrynko (https://github.com/hrynko)",
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "name": "vue-pdfz-monorepo",
+  "private": true,
   "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./style.css": "./dist/style.css",
-    "./locales/*": {
-      "types": "./dist/i18n/locales/*.d.ts",
-      "import": "./dist/locales/*.js",
-      "require": "./dist/locales/*.cjs"
-    },
-    "./package.json": "./package.json"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "dev": "pnpm demo:dev",
-    "build": "vue-tsc --noEmit -p tsconfig.build.json && vite build",
-    "build:lib": "vite build",
-    "typecheck": "vue-tsc --noEmit -p tsconfig.json",
+    "dev": "pnpm --filter playground dev",
+    "build": "pnpm --filter vue-pdfz build",
+    "typecheck": "pnpm --filter vue-pdfz typecheck",
+    "test": "pnpm --filter vue-pdfz test",
+    "test:coverage": "pnpm --filter vue-pdfz test:coverage",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{ts,vue,css}\"",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "demo:samples": "node playground/generate-samples.mjs",
-    "demo:dev": "node playground/generate-samples.mjs && vite --config playground/vite.config.ts",
-    "demo:build": "node playground/generate-samples.mjs && vite build --config playground/vite.config.ts",
-    "prepublishOnly": "pnpm run build",
+    "format": "prettier --write \"packages/*/src/**/*.{ts,vue,css}\"",
+    "demo:dev": "pnpm --filter playground dev",
+    "demo:build": "pnpm --filter playground build",
+    "demo:samples": "pnpm --filter playground samples",
     "prepare": "husky"
-  },
-  "dependencies": {
-    "vue-pdf-embed": "^2.1.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
@@ -77,19 +37,6 @@
     "vue": "^3.5.13",
     "vue-eslint-parser": "^9.4.3",
     "vue-tsc": "^2.2.0"
-  },
-  "peerDependencies": {
-    "pdfjs-dist": "^5.7.284",
-    "vue": "^3.4.0"
-  },
-  "peerDependenciesMeta": {
-    "pdfjs-dist": {
-      "optional": true
-    }
-  },
-  "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
   },
   "packageManager": "pnpm@8.10.2"
 }

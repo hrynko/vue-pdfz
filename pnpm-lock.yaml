@@ -4,72 +4,84 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  vue-pdf-embed:
-    specifier: ^2.1.5
-    version: 2.1.5(vue@3.5.38)
+importers:
 
-devDependencies:
-  '@eslint/js':
-    specifier: ^9.17.0
-    version: 9.39.4
-  '@types/node':
-    specifier: ^22.10.0
-    version: 22.20.0
-  '@vitejs/plugin-vue':
-    specifier: ^5.2.1
-    version: 5.2.4(vite@6.4.3)(vue@3.5.38)
-  '@vitest/coverage-v8':
-    specifier: ^3.2.6
-    version: 3.2.6(vitest@3.2.6)
-  '@vue/test-utils':
-    specifier: ^2.4.6
-    version: 2.4.11(@vue/compiler-dom@3.5.38)(vue@3.5.38)
-  eslint:
-    specifier: ^9.17.0
-    version: 9.39.4
-  eslint-plugin-vue:
-    specifier: ^9.32.0
-    version: 9.33.0(eslint@9.39.4)
-  happy-dom:
-    specifier: ^15.11.7
-    version: 15.11.7
-  husky:
-    specifier: ^9.1.7
-    version: 9.1.7
-  lint-staged:
-    specifier: ^17.3.0
-    version: 17.3.0
-  pdfjs-dist:
-    specifier: ^5.7.284
-    version: 5.7.284
-  prettier:
-    specifier: ^3.4.2
-    version: 3.8.4
-  typescript:
-    specifier: ^5.7.2
-    version: 5.9.3
-  typescript-eslint:
-    specifier: ^8.63.0
-    version: 8.63.0(eslint@9.39.4)(typescript@5.9.3)
-  vite:
-    specifier: ^6.0.5
-    version: 6.4.3(@types/node@22.20.0)
-  vite-plugin-dts:
-    specifier: ^4.4.0
-    version: 4.5.4(@types/node@22.20.0)(typescript@5.9.3)(vite@6.4.3)
-  vitest:
-    specifier: ^3.2.6
-    version: 3.2.6(@types/node@22.20.0)(happy-dom@15.11.7)
-  vue:
-    specifier: ^3.5.13
-    version: 3.5.38(typescript@5.9.3)
-  vue-eslint-parser:
-    specifier: ^9.4.3
-    version: 9.4.3(eslint@9.39.4)
-  vue-tsc:
-    specifier: ^2.2.0
-    version: 2.2.12(typescript@5.9.3)
+  .:
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.17.0
+        version: 9.39.4
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.0
+      '@vitejs/plugin-vue':
+        specifier: ^5.2.1
+        version: 5.2.4(vite@6.4.3)(vue@3.5.38)
+      '@vitest/coverage-v8':
+        specifier: ^3.2.6
+        version: 3.2.6(vitest@3.2.6)
+      '@vue/test-utils':
+        specifier: ^2.4.6
+        version: 2.4.11(@vue/compiler-dom@3.5.38)(vue@3.5.38)
+      eslint:
+        specifier: ^9.17.0
+        version: 9.39.4
+      eslint-plugin-vue:
+        specifier: ^9.32.0
+        version: 9.33.0(eslint@9.39.4)
+      happy-dom:
+        specifier: ^15.11.7
+        version: 15.11.7
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+      lint-staged:
+        specifier: ^17.3.0
+        version: 17.3.0
+      pdfjs-dist:
+        specifier: ^5.7.284
+        version: 5.7.284
+      prettier:
+        specifier: ^3.4.2
+        version: 3.8.4
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.63.0
+        version: 8.63.0(eslint@9.39.4)(typescript@5.9.3)
+      vite:
+        specifier: ^6.0.5
+        version: 6.4.3(@types/node@22.20.0)
+      vite-plugin-dts:
+        specifier: ^4.4.0
+        version: 4.5.4(@types/node@22.20.0)(typescript@5.9.3)(vite@6.4.3)
+      vitest:
+        specifier: ^3.2.6
+        version: 3.2.6(@types/node@22.20.0)(happy-dom@15.11.7)
+      vue:
+        specifier: ^3.5.13
+        version: 3.5.38(typescript@5.9.3)
+      vue-eslint-parser:
+        specifier: ^9.4.3
+        version: 9.4.3(eslint@9.39.4)
+      vue-tsc:
+        specifier: ^2.2.0
+        version: 2.2.12(typescript@5.9.3)
+
+  packages/playground: {}
+
+  packages/vue-pdfz:
+    dependencies:
+      pdfjs-dist:
+        specifier: ^5.7.284
+        version: 5.7.284
+      vue:
+        specifier: ^3.4.0
+        version: 3.5.38(typescript@5.9.3)
+      vue-pdf-embed:
+        specifier: ^2.1.5
+        version: 2.1.5(vue@3.5.38)
 
 packages:
 
