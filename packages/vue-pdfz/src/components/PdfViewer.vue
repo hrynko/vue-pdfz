@@ -56,31 +56,57 @@ const ICON_SLOT_NAMES = [
 
 const props = withDefaults(
   defineProps<{
+    /** Render the annotation layer (links, form widgets, popups). */
     annotationLayer?: boolean
+    /** Show the download action (toolbar button, method, and shortcut). */
     enableDownload?: boolean
+    /** Enable keyboard shortcuts. */
     enableKeyboard?: boolean
+    /** Show the print action (toolbar button, method, and shortcut). */
     enablePrint?: boolean
+    /** Enable full-text search. */
     enableSearch?: boolean
+    /** AcroForm fields: `true` interactive, `'readonly'` rendered but non-editable, `false` off. */
     forms?: boolean | 'readonly'
+    /** PDF.js path for annotation icon images. */
     imageResourcesPath?: string
+    /** Page layout mode. */
     layout?: LayoutMode
+    /** Defer per-page rendering until the page nears the viewport. */
     lazy?: boolean
+    /** `rel` attribute applied to external links. */
     linkRel?: string
+    /** `target` attribute applied to external links. */
     linkTarget?: LinkTarget
+    /** Locale code for the viewer UI. Falls back to the plugin locale, then `'en'`. */
     locale?: string
+    /** Maximum zoom scale. */
     maxZoom?: number
+    /** Per-instance message overrides, merged over the active locale bundle. */
     messages?: Partial<LocaleMessages>
+    /** Minimum zoom scale. */
     minZoom?: number
+    /** Which search-bar toggles to show. Both hidden by default. */
     searchControls?: SearchControls
+    /** Per-action keyboard-shortcut overrides. */
     shortcuts?: KeyboardShortcuts
+    /** Thumbnails sidebar: `'auto'` opens it on wide containers only, `true` opens it everywhere, `false` disables it (no toggle). Always toggleable at runtime unless `false`. */
     showThumbnails?: boolean | 'auto'
+    /** Show the toolbar. */
     showToolbar?: boolean
+    /** The document to display: a URL, binary data, or a `PdfSource` config object. */
     source: PdfSourceProp
+    /** Render the selectable text layer. Required for search and text selection. */
     textLayer?: boolean
+    /** Color-scheme mode. */
     theme?: ThemeMode
+    /** Design-token overrides, merged over the theme and any plugin-wide tokens. */
     themeTokens?: ThemeTokens
+    /** Rendered width of each thumbnail, in pixels. */
     thumbnailWidth?: number
+    /** Window page rendering for very large documents. */
     virtualization?: boolean
+    /** Zoom increment for zoom-in / zoom-out. */
     zoomStep?: number
   }>(),
   {
@@ -106,18 +132,31 @@ const props = withDefaults(
 )
 
 const emit = defineEmits<{
+  /** Fired when an annotation is clicked. */
   'annotation-click': [payload: AnnotationClickPayload]
+  /** Fired when an interactive form field changes. */
   'form-change': [payload: FormChangePayload]
+  /** Fired when an internal or external link is activated. */
   'link-click': [payload: LinkClickPayload]
+  /** Fired as the document downloads. */
   'loading-progress': [progress: LoadingProgress]
+  /** Fired when the active page changes. */
   'page-change': [page: number]
+  /** Fired when a submitted password is rejected. */
   'password-incorrect': []
+  /** Fired when the document is encrypted and a password is required. */
   'password-required': []
+  /** Fired when the rotation changes. */
   'rotation-change': [rotation: Rotation]
+  /** Fired when the search results update. */
   'search-result': [result: SearchResult]
+  /** Fired when the zoom changes; payload is the zoom value and the resolved scale. */
   'zoom-change': [zoom: ZoomValue, scale: number]
+  /** Fired when the document fails to load or render. */
   error: [error: PdfError]
+  /** Fired once the document's metadata is available. */
   loaded: [meta: PdfDocumentMeta]
+  /** Fired after a page finishes rendering. */
   rendered: [page: number]
 }>()
 
