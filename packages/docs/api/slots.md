@@ -1,0 +1,17 @@
+# Slots
+
+Almost every region of the viewer is slot-overridable. Scoped props are listed where the slot exposes them. See the [Customization cookbook](/guide/customization) for worked examples.
+
+| Slot                                               | Scope                                           | Purpose                                                                                                                                      |
+| -------------------------------------------------- | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `empty`                                            | –                                               | Shown when there is no `source`.                                                                                                             |
+| `error`                                            | `{ error, retry }`                              | Custom error state.                                                                                                                          |
+| `icon-*`                                           | –                                               | `icon-prev`, `icon-next`, `icon-zoom-in`, `icon-zoom-out`, `icon-rotate-cw`, `icon-search`, `icon-print`, `icon-download`, `icon-thumbnails` |
+| `loading`                                          | `{ progress }`                                  | Custom loading state.                                                                                                                        |
+| `page-overlay`                                     | `{ pageNumber, scale }`                         | Per-page watermarks / badges, positioned over the canvas.                                                                                    |
+| `password`                                         | `{ submit, error }`                             | Custom password prompt.                                                                                                                      |
+| `search-bar`                                       | `{ total, current, search, next, prev, close }` | Custom search UI.                                                                                                                            |
+| `thumbnail`                                        | `{ page, isActive, src }`                       | Per-thumbnail item.                                                                                                                          |
+| `thumbnails`                                       | `{ page, pageCount, goToPage }`                 | Full sidebar replacement.                                                                                                                    |
+| `toolbar-start` / `toolbar-center` / `toolbar-end` | –                                               | Replace a single toolbar region.                                                                                                             |
+| `toolbar`                                          | `{ page, pageCount, scale, rotation }`          | Full toolbar replacement.                                                                                                                    |

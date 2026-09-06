@@ -14,6 +14,9 @@
     "demo:dev": "pnpm --filter playground dev",
     "demo:build": "pnpm --filter playground build",
     "demo:samples": "pnpm --filter playground samples",
+    "docs:dev": "pnpm --filter docs dev",
+    "docs:build": "pnpm --filter docs build",
+    "docs:api": "pnpm --filter docs api",
     "prepare": "husky"
   },
   "devDependencies": {

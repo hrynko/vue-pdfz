@@ -10,6 +10,8 @@ export default defineConfig(
       '**/dist/**',
       'coverage/**',
       'node_modules/**',
+      'packages/docs/.vitepress/cache/**',
+      'packages/docs/.vitepress/dist/**',
       'packages/playground/dist/**',
       'packages/playground/public/**',
     ],
@@ -54,7 +56,7 @@ export default defineConfig(
     },
   },
   {
-    files: ['packages/playground/**', 'packages/vue-pdfz/__tests__/**'],
+    files: ['packages/docs/**', 'packages/playground/**', 'packages/vue-pdfz/__tests__/**'],
     rules: {
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-member-access': 'off',

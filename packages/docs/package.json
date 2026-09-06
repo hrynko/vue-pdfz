@@ -1,0 +1,16 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "api": "node scripts/generate-api.mjs",
+    "dev": "pnpm run api && vitepress dev",
+    "build": "pnpm run api && vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "@vue/compiler-dom": "3.5.38",
+    "vitepress": "^1.6.3",
+    "vue-docgen-api": "^4.79.2"
+  }
+}

@@ -4,4 +4,8 @@
 coverage/
 dist/
 node_modules/
+packages/docs/.vitepress/cache/
+packages/docs/.vitepress/dist/
+packages/docs/api/_generated/
 packages/playground/dist/
+packages/playground/public/samples/
