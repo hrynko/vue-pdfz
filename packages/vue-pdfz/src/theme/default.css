@@ -279,6 +279,7 @@
   flex: 1 1 auto;
   min-inline-size: 0;
   overflow: auto;
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   direction: ltr;
 }
