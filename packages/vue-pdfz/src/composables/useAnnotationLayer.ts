@@ -8,6 +8,7 @@ import type {
 } from '../types'
 
 const ENHANCED_ATTR = 'data-vue-pdfz-enhanced'
+const READONLY_ATTR = 'data-vue-pdfz-readonly'
 
 function isExternalHref(href: string | null): boolean {
   if (!href || href.startsWith('#')) {
@@ -123,9 +124,17 @@ export function useAnnotationLayer(options: {
       })
 
       root.querySelectorAll<HTMLElement>('input, select, textarea').forEach((field) => {
+        const input = field as HTMLInputElement
         if (toValue(options.readonly)) {
-          field.setAttribute('disabled', 'true')
-          ;(field as HTMLInputElement).readOnly = true
+          if (!input.disabled || field.hasAttribute(READONLY_ATTR)) {
+            field.setAttribute(READONLY_ATTR, '')
+            input.disabled = true
+            input.readOnly = true
+          }
+        } else if (field.hasAttribute(READONLY_ATTR)) {
+          field.removeAttribute(READONLY_ATTR)
+          input.disabled = false
+          input.readOnly = false
         }
         if (field.getAttribute(ENHANCED_ATTR) === 'field') {
           return
