@@ -365,6 +365,13 @@ function prevPage(): void {
   goToPage(page.value - 1)
 }
 
+function handleLinkClick(payload: LinkClickPayload): void {
+  if (payload.kind === 'internal' && payload.page != null) {
+    goToPage(payload.page)
+  }
+  emit('link-click', payload)
+}
+
 function handleThumbnailNavigate(n: number): void {
   goToPage(n)
   if (isSidebarDrawer.value) {
@@ -1022,7 +1029,7 @@ defineExpose({
               :text-layer="textLayer"
               @annotation-click="emit('annotation-click', $event)"
               @form-change="emit('form-change', $event)"
-              @link-click="emit('link-click', $event)"
+              @link-click="handleLinkClick"
               @render-failed="handlePageRenderFail"
               @rendered="emit('rendered', $event)"
             >

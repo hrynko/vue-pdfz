@@ -5,6 +5,7 @@ vi.mock('vue-pdf-embed', async () => await import('./mocks/vue-pdf-embed'))
 
 import type { PdfError, SearchResult } from '../src/types'
 import { makeFakeDoc } from './mocks/vue-pdf-embed'
+import PdfPage from '../src/components/PdfPage.vue'
 import PdfViewer from '../src/components/PdfViewer.vue'
 
 async function mountViewer(props: Record<string, unknown> = {}) {
@@ -62,6 +63,29 @@ describe('PdfViewer', () => {
     await flushPromises()
     const changes = wrapper.emitted('page-change')!
     expect(changes[changes.length - 1][0]).toBe(3)
+  })
+
+  it('navigates to the target page when an internal link is clicked', async () => {
+    const wrapper = await mountViewer()
+    const payload = { kind: 'internal', page: 3 }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    wrapper.findComponent(PdfPage).vm.$emit('link-click', payload)
+    await flushPromises()
+    const updates = wrapper.emitted('update:page')!
+    expect(updates[updates.length - 1]).toEqual([payload.page])
+    const links = wrapper.emitted('link-click')!
+    expect(links[links.length - 1]).toEqual([payload])
+  })
+
+  it('re-emits external link clicks without navigating', async () => {
+    const wrapper = await mountViewer()
+    const payload = { kind: 'external', url: 'https://example.com' }
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+    wrapper.findComponent(PdfPage).vm.$emit('link-click', payload)
+    await flushPromises()
+    expect(wrapper.emitted('update:page')).toBeFalsy()
+    const links = wrapper.emitted('link-click')!
+    expect(links[links.length - 1]).toEqual([payload])
   })
 
   it('falls back through i18n (German locale renders localized labels)', async () => {
