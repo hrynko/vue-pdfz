@@ -218,6 +218,7 @@ onBeforeUnmount(() => {
         :find-controller="findController"
         :forms="forms"
         :image-resources-path="imageResourcesPath"
+        :match-scrolling="false"
         :page="pageNumber"
         :rotation="rotation"
         :source="doc"

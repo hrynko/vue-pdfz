@@ -15,14 +15,6 @@ export function useSearch(options: {
 
   const engine = usePdfSearch(options.doc)
 
-  const controller = engine.findController as unknown as {
-    scrollMatchIntoView?: (...args: unknown[]) => void
-  }
-
-  if (controller && typeof controller.scrollMatchIntoView === 'function') {
-    controller.scrollMatchIntoView = () => {}
-  }
-
   const current = computed(() => engine.currentMatch.value)
   const currentPage = computed(() => engine.currentMatchPage.value)
   const isActive = computed(() => query.value.trim().length > 0)
