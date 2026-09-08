@@ -24,6 +24,7 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm build
+      - run: pnpm docs:build
 
   test:
     name: Test (Node ${{ matrix.node }})
