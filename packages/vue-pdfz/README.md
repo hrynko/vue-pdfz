@@ -9,6 +9,12 @@ A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 
 <img src="https://raw.githubusercontent.com/hrynko/vue-pdfz/main/.github/assets/screenshot.png" alt="vue-pdfz screenshot" width="100%">
 
+<div align="center">
+
+**[Documentation](https://hrynko.github.io/vue-pdfz/) • [API Reference](https://hrynko.github.io/vue-pdfz/api/props) • [Live Demo](https://hrynko.github.io/vue-pdfz/demo)**
+
+</div>
+
 ## Features
 
 - 🧭 **Navigation** – UI and keyboard navigation, `continuous` / `single` / `facing` layouts.
@@ -145,8 +151,7 @@ Resolution order for any string: per-component `messages` → plugin `messages` 
 ### Add a locale
 
 ```ts
-import { PdfViewer } from 'vue-pdfz'
-import type { LocaleMessages } from 'vue-pdfz'
+import { PdfViewer, type LocaleMessages } from 'vue-pdfz'
 import { en } from 'vue-pdfz/locales/en'
 
 const it: LocaleMessages = { ...en, nextPage: 'Pagina successiva', /* ... */ }
