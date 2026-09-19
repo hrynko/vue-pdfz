@@ -561,7 +561,8 @@
 .vue-pdfz-thumb__image {
   display: block;
   inline-size: 100%;
-  block-size: auto;
+  block-size: 100%;
+  object-fit: cover;
 }
 
 .vue-pdfz-thumb__label {
