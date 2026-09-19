@@ -53,6 +53,7 @@ const ICON_SLOT_NAMES = [
   'icon-download',
   'icon-thumbnails',
 ] as const
+const PAGE_GAP = 28 // --vue-pdfz-page-gap
 
 const props = withDefaults(
   defineProps<{
@@ -245,7 +246,6 @@ const search = useSearch({
 })
 
 /* ---------------------------- virtualization ---------------------------- */
-const PAGE_GAP = 28 // --vue-pdfz-page-gap
 const estimatedPageHeight = computed(() => (pageSize.value?.height ?? 800) * scale.value)
 const isContinuous = computed(() => props.layout === 'continuous' || props.layout === 'facing')
 const {
@@ -581,7 +581,7 @@ function handleTouchEnd(): void {
 
 /* ------------------------------- measure -------------------------------- */
 async function measurePage(): Promise<void> {
-  if (!doc.value || pageCount.value < 1) {
+  if (!doc.value || pageCount.value <= 0) {
     pageSize.value = null
     return
   }
