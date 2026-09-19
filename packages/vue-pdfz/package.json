@@ -9,6 +9,7 @@
     "pdf",
     "pdf-viewer"
   ],
+  "homepage": "https://hrynko.github.io/vue-pdfz/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hrynko/vue-pdfz.git",
