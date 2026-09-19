@@ -329,7 +329,7 @@ async function download(): Promise<void> {
   }
   isDownloading.value = true
   try {
-    await downloadPdf(meta.value?.title ?? '')
+    await downloadPdf(meta.value?.title ?? undefined)
   } finally {
     isDownloading.value = false
   }
