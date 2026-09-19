@@ -77,20 +77,13 @@ async function renderThumbnail(page: number): Promise<void> {
   rendering.add(page)
   try {
     const pdfPage = await props.doc.getPage(page)
-    const viewport = pdfPage.getViewport({
-      scale: props.thumbnailWidth / pdfPage.getViewport({ scale: 1 }).width,
-    })
-    aspects.value[page] = viewport.height / viewport.width
-    const dpr = capDpr(2)
+    const { width, height } = pdfPage.getViewport({ scale: 1 })
+    aspects.value[page] = height / width
+    const viewport = pdfPage.getViewport({ scale: (props.thumbnailWidth / width) * capDpr(2) })
     const canvas = document.createElement('canvas')
-    canvas.width = Math.floor(viewport.width * dpr)
-    canvas.height = Math.floor(viewport.height * dpr)
-    const canvasContext = canvas.getContext('2d')
-    if (!canvasContext) {
-      return
-    }
-    canvasContext.scale(dpr, dpr)
-    await pdfPage.render({ canvas: null, canvasContext, viewport }).promise
+    canvas.width = Math.floor(viewport.width)
+    canvas.height = Math.floor(viewport.height)
+    await pdfPage.render({ canvas, viewport }).promise
     sources.value[page] = canvas.toDataURL('image/png')
     canvas.width = 0
     canvas.height = 0
@@ -172,7 +165,7 @@ onBeforeUnmount(() => {
           >
             <img
               v-if="sources[page]"
-              class="vue-pdfz-thumb__canvas"
+              class="vue-pdfz-thumb__image"
               :alt="t('thumbnailLabel', { page })"
               :src="sources[page]"
               loading="lazy"
