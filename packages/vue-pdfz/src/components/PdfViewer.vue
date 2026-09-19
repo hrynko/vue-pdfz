@@ -220,9 +220,7 @@ const {
 })
 
 const isDocumentReady = computed(() => !!doc.value && pageCount.value > 0)
-const hasSource = computed(
-  () => props.source != null && props.source !== '' && pageCount.value >= 0,
-)
+const hasSource = computed(() => props.source != null && props.source !== '')
 const pageCount = computed(() => meta.value?.pageCount ?? 0)
 
 /* --------------------------------- zoom --------------------------------- */
