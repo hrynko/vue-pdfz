@@ -15,7 +15,7 @@ import {
   type Rotation,
   type TranslateFn,
 } from '../types'
-import { debounce, isClient } from '../utils'
+import { debounce, isClient, limitCanvasScale } from '../utils'
 import type { FindController } from '../composables/useSearch'
 import { useAnnotationLayer } from '../composables/useAnnotationLayer'
 
@@ -150,6 +150,15 @@ useAnnotationLayer({
 })
 
 const renderScale = ref(props.scale)
+const canvasScale = computed(() =>
+  intrinsicSize.value
+    ? limitCanvasScale(
+        intrinsicSize.value.width * renderScale.value,
+        intrinsicSize.value.height * renderScale.value,
+      )
+    : 1,
+)
+
 const settleRenderScale = debounce(() => {
   renderScale.value = props.scale
 }, 140)
@@ -221,6 +230,7 @@ onBeforeUnmount(() => {
         :match-scrolling="false"
         :page="pageNumber"
         :rotation="rotation"
+        :scale="canvasScale"
         :source="doc"
         :text-layer="textLayer"
         :width="renderWidth"

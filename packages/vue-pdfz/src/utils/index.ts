@@ -2,6 +2,14 @@ import { PdfError, type PdfSource, type PdfSourceProp } from '../types'
 
 export const isClient = typeof window !== 'undefined' && typeof document !== 'undefined'
 
+const isMobile =
+  isClient &&
+  (/\b(?:iPad|iPhone|iPod)(?=;)|Android/.test(navigator.userAgent) ||
+    (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1))
+const MAX_CANVAS_DIMENSION = 32_767
+const MAX_CANVAS_PIXELS = isMobile ? 5 * 2 ** 20 : 2 ** 25
+const MAX_SCREEN_AREAS = 3
+
 export function capDpr(cap = 3): number {
   if (!isClient) {
     return 1
@@ -44,6 +52,22 @@ function isPdfSourceObject(v: unknown): v is PdfSource {
     !(v instanceof Uint8Array) &&
     !(v instanceof URL)
   )
+}
+
+export function limitCanvasScale(width: number, height: number): number {
+  if (!isClient) {
+    return 1
+  }
+  const dpr = window.devicePixelRatio || 1
+  const maxPixels = Math.min(
+    MAX_CANVAS_PIXELS,
+    Math.ceil(window.screen.availWidth * window.screen.availHeight * dpr ** 2 * MAX_SCREEN_AREAS),
+  )
+  const maxOutputScale = Math.min(
+    Math.sqrt(maxPixels / (width * height)),
+    MAX_CANVAS_DIMENSION / Math.max(width, height),
+  )
+  return Math.min(1, maxOutputScale / dpr)
 }
 
 export function normalizePdfError(error: unknown): PdfError {

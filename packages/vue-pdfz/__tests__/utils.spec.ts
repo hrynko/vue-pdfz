@@ -1,8 +1,9 @@
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import {
   clamp,
   debounce,
+  limitCanvasScale,
   normalizePdfError,
   normalizeSource,
   parsePdfDate,
@@ -41,6 +42,48 @@ describe('utils', () => {
       vi.advanceTimersByTime(200)
       expect(fn).not.toHaveBeenCalled()
       vi.useRealTimers()
+    })
+  })
+
+  describe('limitCanvasScale', () => {
+    const ZOOMED = { width: 612 * 10, height: 792 * 10 }
+    const canvasPixels = (scale: number): number =>
+      ZOOMED.width * ZOOMED.height * (devicePixelRatio * scale) ** 2
+    const stubDisplay = (availWidth: number, availHeight: number, dpr: number): void => {
+      vi.stubGlobal('screen', { availWidth, availHeight })
+      vi.stubGlobal('devicePixelRatio', dpr)
+    }
+
+    afterEach(() => {
+      vi.unstubAllGlobals()
+    })
+
+    it('keeps full resolution at normal zoom', () => {
+      stubDisplay(1512, 982, 2)
+      expect(limitCanvasScale(612, 792)).toBe(1)
+    })
+
+    it('caps the canvas at 3x the screen area', () => {
+      stubDisplay(1512, 982, 2)
+      const scale = limitCanvasScale(ZOOMED.width, ZOOMED.height)
+      expect(canvasPixels(scale)).toBeCloseTo(17_817_408)
+    })
+
+    it('caps each canvas side at 32767px', () => {
+      stubDisplay(5120, 2880, 1)
+      expect(40_000 * limitCanvasScale(100, 40_000)).toBeCloseTo(32_767)
+    })
+
+    it('uses the lower mobile cap on iPadOS', async () => {
+      vi.stubGlobal('navigator', {
+        maxTouchPoints: 5,
+        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+      })
+      vi.resetModules()
+      const utils = await import('../src/utils')
+      stubDisplay(1366, 1024, 2)
+      const scale = utils.limitCanvasScale(ZOOMED.width, ZOOMED.height)
+      expect(canvasPixels(scale)).toBeCloseTo(5 * 2 ** 20)
     })
   })
 
