@@ -17,19 +17,15 @@ A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 
 ## Features
 
-- 🧭 **Navigation** – UI and keyboard navigation, `continuous` / `single` / `facing` layouts.
-- 🔍 **Zoom & Rotation** – discrete presets + free zoom, fit modes, scroll & pinch zoom.
-- 🖼 **Thumbnails** – lazily rendered, collapsible.
-- 🔎 **Text Search** – cross-page matching and highlighting.
-- 🖨 **Print & Download** – whole document, with filled form values baked in.
-- 📝 **Annotations & Forms** – annotation layer, interactive AcroForms, internal/external links.
-- 🔒 **Passwords** – built-in prompt for encrypted PDFs.
-- 🌍 **i18n** – typed translations, 9 built-in + custom locales, optional `vue-i18n` adapter, RTL.
-- 📱 **Responsiveness** – container-driven, compact toolbar + thumbnails drawer on narrow widths.
-- 🎨 **Theming** – custom design tokens, `light` / `dark` / `auto` modes, deep slot overrides.
-- ♿ **Accessibility** – keyboard shortcuts, ARIA roles & labels.
-- ⚡ **Performance** – lazy + virtualized page rendering.
-- 🧩 **Compatibility** – typed, tree-shakeable ESM (+ CJS), SSR/Nuxt-safe.
+- 📖 Continuous, single- and two-page layouts
+- 📝 Text search, links, annotations and forms
+- 🔒 Password-protected files
+- 🖨️ Print and download
+- 🌍 9 built-in locales, RTL and optional `vue-i18n` integration
+- 🎨 Light and dark themes, design tokens and slots for custom UI
+- ⌨️ Keyboard shortcuts and ARIA labels
+- ⚡ Lazy rendering and optional virtualization
+- 🧩 Typed, tree-shakeable builds with SSR and Nuxt support
 
 ## Installation
 
