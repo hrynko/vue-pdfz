@@ -282,6 +282,7 @@
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
   direction: ltr;
+  column-gap: var(--vue-pdfz-page-gap);
 }
 
 .vue-pdfz-pages {

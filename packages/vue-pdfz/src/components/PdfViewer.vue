@@ -53,7 +53,7 @@ const ICON_SLOT_NAMES = [
   'icon-download',
   'icon-thumbnails',
 ] as const
-const PAGE_GAP = 28 // --vue-pdfz-page-gap
+const DEFAULT_PAGE_GAP = 28 // --vue-pdfz-page-gap
 
 const props = withDefaults(
   defineProps<{
@@ -169,6 +169,7 @@ const isSearchOpen = ref(false)
 const liveMessage = ref('')
 const mainEl = ref<HTMLElement | null>(null)
 const page = defineModel<number>('page', { default: 1 })
+const pageGap = ref(DEFAULT_PAGE_GAP)
 const pageSize = shallowRef<{ width: number; height: number } | null>(null)
 const rootEl = ref<HTMLElement | null>(null)
 const rotation = defineModel<Rotation>('rotation', { default: 0 })
@@ -226,7 +227,7 @@ const pageCount = computed(() => meta.value?.pageCount ?? 0)
 
 /* --------------------------------- zoom --------------------------------- */
 const { canZoomIn, canZoomOut, fitMode, scale, setZoom, zoomIn, zoomOut } = useZoom({
-  columnGap: () => PAGE_GAP,
+  columnGap: () => pageGap.value,
   columns: () => (props.layout === 'facing' ? 2 : 1),
   containerSize: () => containerSize.value,
   maxZoom: () => props.maxZoom,
@@ -259,11 +260,11 @@ const {
   columns: () => (props.layout === 'facing' ? 2 : 1),
   container: mainEl,
   enabled: () => props.virtualization && isContinuous.value,
-  paddingStart: PAGE_GAP,
+  paddingStart: () => pageGap.value,
   pageCount,
-  pageGap: PAGE_GAP,
+  pageGap: () => pageGap.value,
   pageHeight: estimatedPageHeight,
-  scrollMargin: PAGE_GAP,
+  scrollMargin: () => pageGap.value,
 })
 
 /* ------------------------------- sidebar -------------------------------- */
@@ -594,11 +595,19 @@ async function measurePage(): Promise<void> {
   }
 }
 
+function measurePageGap(): void {
+  if (mainEl.value) {
+    const gap = parseFloat(getComputedStyle(mainEl.value).columnGap)
+    pageGap.value = Number.isFinite(gap) ? gap : DEFAULT_PAGE_GAP
+  }
+}
+
 function measureContainer(): void {
   if (mainEl.value) {
+    measurePageGap()
     containerSize.value = {
-      width: Math.max(0, mainEl.value.clientWidth - PAGE_GAP * 2),
-      height: Math.max(0, mainEl.value.clientHeight - PAGE_GAP * 2),
+      width: Math.max(0, mainEl.value.clientWidth - pageGap.value * 2),
+      height: Math.max(0, mainEl.value.clientHeight - pageGap.value * 2),
     }
   }
 }
@@ -614,6 +623,8 @@ const handleResize = throttle(() => {
   measureContainer()
   updateVirtualPages()
 })
+
+watch(themeVars, () => void nextTick(handleResize))
 
 watch([doc, pageCount, rotationValue, () => page.value], measurePage, { immediate: true })
 
@@ -734,12 +745,12 @@ function scrollToSelectedMatch(): boolean {
   }
   const mainRect = main.getBoundingClientRect()
   const bar = rootEl.value?.querySelector<HTMLElement>('.vue-pdfz-searchbar')
-  let inset = PAGE_GAP
+  let inset = pageGap.value
   if (bar) {
     const barRect = bar.getBoundingClientRect()
     const targetRect = (selected ?? target).getBoundingClientRect()
     if (targetRect.left < barRect.right && targetRect.right > barRect.left) {
-      inset = Math.max(inset, barRect.bottom - mainRect.top + PAGE_GAP)
+      inset = Math.max(inset, barRect.bottom - mainRect.top + pageGap.value)
     }
   }
   const top = main.scrollTop + (target.getBoundingClientRect().top - mainRect.top) - inset
