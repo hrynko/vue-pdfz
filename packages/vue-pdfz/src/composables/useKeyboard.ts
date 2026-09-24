@@ -70,7 +70,7 @@ function isEditableTarget(target: EventTarget | null): boolean {
 
 export function useKeyboard(options: {
   enabled?: MaybeRefOrGetter<boolean>
-  handlers: Partial<Record<ShortcutAction, () => void>>
+  handlers: MaybeRefOrGetter<Partial<Record<ShortcutAction, () => void>>>
   shortcuts?: MaybeRefOrGetter<KeyboardShortcuts | undefined>
   target: Ref<HTMLElement | null>
 }): void {
@@ -94,16 +94,17 @@ export function useKeyboard(options: {
 
     const isEditable = isEditableTarget(e.target)
     const combos = getEventCombos(e)
+    const handlers = toValue(options.handlers)
 
-    for (const action of Object.keys(options.handlers) as ShortcutAction[]) {
+    for (const action of Object.keys(handlers) as ShortcutAction[]) {
       if (
-        options.handlers[action] &&
+        handlers[action] &&
         (!isEditable || ALWAYS_ALLOWED.includes(action)) &&
         resolveBindings(action).some((binding) => matchesBinding(combos, binding))
       ) {
         e.preventDefault()
         e.stopPropagation()
-        options.handlers[action]()
+        handlers[action]()
         return
       }
     }

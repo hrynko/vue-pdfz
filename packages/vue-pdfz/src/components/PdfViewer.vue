@@ -59,11 +59,11 @@ const props = withDefaults(
   defineProps<{
     /** Render the annotation layer (links, form widgets, popups). */
     annotationLayer?: boolean
-    /** Show the download action (toolbar button, method, and shortcut). */
+    /** Enable the download action. */
     enableDownload?: boolean
     /** Enable keyboard shortcuts. */
     enableKeyboard?: boolean
-    /** Show the print action (toolbar button, method, and shortcut). */
+    /** Enable the print action. */
     enablePrint?: boolean
     /** Enable full-text search. */
     enableSearch?: boolean
@@ -475,7 +475,7 @@ function handlePageRenderFail(err: PdfError): void {
 /* ------------------------------- keyboard ------------------------------- */
 useKeyboard({
   enabled: () => props.enableKeyboard,
-  handlers: {
+  handlers: () => ({
     closeOverlay: () => {
       if (isSearchOpen.value) {
         closeSearch()
@@ -483,22 +483,38 @@ useKeyboard({
         isSidebarOpen.value = false
       }
     },
-    download: () => void download(),
     firstPage: () => goToPage(1),
     lastPage: () => goToPage(pageCount.value),
-    nextMatch,
     nextPage,
-    prevMatch,
     prevPage,
-    print: () => void print(),
     rotateCcw,
     rotateCw,
-    toggleSearch,
-    toggleThumbnails,
     zoomIn,
     zoomOut,
     zoomReset: () => setZoom(1),
-  },
+    ...(props.enableDownload
+      ? {
+          download: () => void download(),
+        }
+      : {}),
+    ...(props.enablePrint
+      ? {
+          print: () => void print(),
+        }
+      : {}),
+    ...(props.enableSearch
+      ? {
+          nextMatch,
+          prevMatch,
+          toggleSearch,
+        }
+      : {}),
+    ...(props.showThumbnails !== false
+      ? {
+          toggleThumbnails,
+        }
+      : {}),
+  }),
   shortcuts: () => props.shortcuts ?? config.shortcuts,
   target: rootEl,
 })
