@@ -322,13 +322,13 @@ const pagesToRender = computed<number[]>(() => {
 })
 
 /* ------------------------------- methods -------------------------------- */
-async function download(): Promise<void> {
+async function download(filename?: string): Promise<void> {
   if (isDownloading.value) {
     return
   }
   isDownloading.value = true
   try {
-    await downloadPdf(meta.value?.title ?? undefined)
+    await downloadPdf(filename ?? meta.value?.title ?? undefined)
   } finally {
     isDownloading.value = false
   }
