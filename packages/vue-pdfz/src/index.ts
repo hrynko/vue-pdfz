@@ -11,6 +11,7 @@ export {
   type LinkTarget,
   type LoadingProgress,
   type LocaleMessages,
+  type LocaleMessagesMap,
   type PdfDocumentMeta,
   type PdfErrorCode,
   type PdfSource,
