@@ -56,6 +56,20 @@ describe('i18n core', () => {
       expect(t('nextPage')).toBe('COMPONENT')
     })
 
+    it('layers regional plugin messages over the base language', () => {
+      const { t } = useI18n({
+        locale: ref('de-CH'),
+        pluginMessages: ref({
+          de: { download: 'Speichern', closeSearch: 'Suche schließen' },
+          'de-CH': { closeSearch: 'Suche schliessen', zoomIn: 'Vergrössern' },
+        }),
+      })
+      expect(t('download')).toBe('Speichern')
+      expect(t('closeSearch')).toBe('Suche schliessen')
+      expect(t('zoomIn')).toBe('Vergrössern')
+      expect(t('print')).toBe('Drucken')
+    })
+
     it('delegates to an adapter when it resolves a key', () => {
       const { t } = useI18n({
         locale: ref('en'),

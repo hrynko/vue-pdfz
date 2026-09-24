@@ -46,12 +46,17 @@ export function useI18n(options: {
 
   const dir = computed<TextDirection>(() => options.adapter?.dir ?? getLocaleDir(locale.value))
 
-  const messages = computed<LocaleMessages>(() => ({
-    ...en,
-    ...(locales[locale.value] ?? locales[locale.value.split('-')[0]]),
-    ...toValue(options.pluginMessages)?.[locale.value],
-    ...toValue(options.messages),
-  }))
+  const messages = computed<LocaleMessages>(() => {
+    const baseLocale = locale.value.split('-')[0] ?? locale.value
+    const pluginMessages = toValue(options.pluginMessages)
+    return {
+      ...en,
+      ...(locales[locale.value] ?? locales[baseLocale]),
+      ...pluginMessages?.[baseLocale],
+      ...pluginMessages?.[locale.value],
+      ...toValue(options.messages),
+    }
+  })
 
   const formatNumber = (value: number, opts?: Intl.NumberFormatOptions): string => {
     try {
