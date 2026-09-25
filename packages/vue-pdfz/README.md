@@ -25,7 +25,7 @@ A customizable, i18n-ready, SSR-safe PDF viewer for Vue
 - 🎨 Light and dark themes, design tokens and slots for custom UI
 - ⌨️ Keyboard shortcuts and ARIA labels
 - ⚡ Lazy rendering and optional virtualization
-- 🧩 Typed, tree-shakeable builds with SSR and Nuxt support
+- 🧩 Typed API, SSR-safe, with Nuxt support
 
 ## Installation
 
@@ -42,7 +42,7 @@ import 'vue-pdfz/style.css'
 </script>
 
 <template>
-  <PdfViewer source="/document.pdf" />
+  <PdfViewer source="/document.pdf" style="height: 600px" />
 </template>
 ```
 
@@ -51,9 +51,9 @@ import 'vue-pdfz/style.css'
 | Prop                 | Type                                                      | Default                 | Description                                                                 |
 | -------------------- | --------------------------------------------------------- | ----------------------- | --------------------------------------------------------------------------- |
 | `annotationLayer`    | `boolean`                                                 | `true`                  | Render the annotation layer.                                                |
-| `enableDownload`     | `boolean`                                                 | `true`                  | Show the download action.                                                   |
+| `enableDownload`     | `boolean`                                                 | `true`                  | Enable the download button and shortcut.                                    |
 | `enableKeyboard`     | `boolean`                                                 | `true`                  | Enable keyboard shortcuts.                                                  |
-| `enablePrint`        | `boolean`                                                 | `true`                  | Show the print action.                                                      |
+| `enablePrint`        | `boolean`                                                 | `true`                  | Enable the print button and shortcut.                                       |
 | `enableSearch`       | `boolean`                                                 | `true`                  | Enable text search.                                                         |
 | `forms`              | `boolean \| 'readonly'`                                   | `false`                 | Interactive AcroForm fields; `'readonly'` renders them non-editable.        |
 | `imageResourcesPath` | `string`                                                  | –                       | URL path to PDF.js annotation icon assets.                                  |
@@ -119,24 +119,24 @@ import 'vue-pdfz/style.css'
 
 ```ts
 const viewer = ref<InstanceType<typeof PdfViewer>>()
-viewer.value.goToPage(1)
-viewer.value.nextPage()
-viewer.value.prevPage()
-viewer.value.setZoom(1)
-viewer.value.zoomIn()
-viewer.value.zoomOut()
-viewer.value.rotate('cw')
-await viewer.value.search('foo')
-viewer.value.nextMatch()
-viewer.value.prevMatch()
-viewer.value.clearSearch()
-await viewer.value.print()
-await viewer.value.download('report.pdf')
+viewer.value?.goToPage(1)
+viewer.value?.nextPage()
+viewer.value?.prevPage()
+viewer.value?.setZoom(1)
+viewer.value?.zoomIn()
+viewer.value?.zoomOut()
+viewer.value?.rotate('cw')
+const result = await viewer.value?.search('foo')
+viewer.value?.nextMatch()
+viewer.value?.prevMatch()
+viewer.value?.clearSearch()
+await viewer.value?.print()
+await viewer.value?.download()
 ```
 
 ## Internationalization
 
-Resolution order for any string: per-component `messages` → plugin `messages` → built-in bundle for `locale` → `en` fallback.
+Resolution order for any string: `vue-i18n` adapter (if installed) → per-component `messages` → plugin `messages` → built-in bundle for `locale` → `en` fallback.
 
 ### Override individual strings
 
@@ -147,16 +147,15 @@ Resolution order for any string: per-component `messages` → plugin `messages` 
 ### Add a locale
 
 ```ts
-import { PdfViewer, type LocaleMessages } from 'vue-pdfz'
-import { en } from 'vue-pdfz/locales/en'
+import { en, type LocaleMessages } from 'vue-pdfz'
 
-const it: LocaleMessages = { ...en, nextPage: 'Pagina successiva', /* ... */ }
+const it: LocaleMessages = { ...en, nextPage: 'Pagina successiva' /* ... */ }
 
 // Per instance:
-<PdfViewer locale="it" :messages="it" />
+// <PdfViewer locale="it" :messages="it" />
 
 // Or app-wide via the plugin:
-app.use(VuePdfz, { locale: 'it', messages: { it } })
+// app.use(VuePdfz, { locale: 'it', messages: { it } })
 ```
 
 ### Add an optional `vue-i18n` adapter
@@ -164,11 +163,21 @@ app.use(VuePdfz, { locale: 'it', messages: { it } })
 With an adapter to a host `vue-i18n` instance, keys resolve as `${prefix}${key}` (the default prefix is `vuePdfz.`), with unresolved keys falling back to the built-in bundle.
 
 ```ts
-import { useI18n } from 'vue-i18n'
-import { createVueI18nAdapter } from 'vue-pdfz'
+import { createI18n } from 'vue-i18n'
+import VuePdfz, { createVueI18nAdapter } from 'vue-pdfz'
 
-const i18n = useI18n()
-app.use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n) })
+const i18n = createI18n({
+  locale: 'en',
+  messages: {
+    en: {
+      vuePdfz: {
+        download: 'Export',
+      },
+    },
+  },
+})
+
+app.use(i18n).use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n.global) })
 ```
 
 ## License
