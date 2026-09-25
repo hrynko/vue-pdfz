@@ -16,15 +16,15 @@ interface VueI18nAdapterOptions {
  * Build an {@link I18nAdapter} that delegates to a host `vue-i18n` instance.
  * The library never depends on `vue-i18n` directly - pass the instance in.
  *
- * Strings are looked up as `${prefix}${key}` (e.g. `vuePdfz.pageOf`). If the
+ * Strings are looked up as `${prefix}${key}` (e.g. `vuePdfz.nextPage`). If the
  * host catalog is missing a key, vue-i18n typically returns the key unchanged;
  * the adapter detects that and falls back to the built-in bundle.
  *
  * @example
  * ```ts
- * import { useI18n } from 'vue-i18n'
- * const i18n = useI18n()
- * app.use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n) })
+ * import { createI18n } from 'vue-i18n'
+ * const i18n = createI18n({ ... })
+ * app.use(i18n).use(VuePdfz, { i18nAdapter: createVueI18nAdapter(i18n.global) })
  * ```
  */
 export function createVueI18nAdapter(
