@@ -15,18 +15,20 @@ const viewer = ref<InstanceType<typeof PdfViewer>>()
 </template>
 ```
 
-| Method                    | Signature                                                   | Description                                          |
-| ------------------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
-| `goToPage`                | `(page: number) => void`                                    | Scroll to and activate a page.                       |
-| `nextPage` / `prevPage`   | `() => void`                                                | Move one page forward / back.                        |
-| `setZoom`                 | `(zoom: ZoomValue) => void`                                 | Set a numeric scale or a fit mode.                   |
-| `zoomIn` / `zoomOut`      | `() => void`                                                | Step the zoom by `zoomStep`.                         |
-| `rotate`                  | `(direction: 'cw' \| 'ccw') => void`                        | Rotate 90° clockwise / counter-clockwise.            |
-| `search`                  | `(query: string, options?: SearchOptions) => Promise<void>` | Run a search; `options` is a `SearchOptions` object. |
-| `nextMatch` / `prevMatch` | `() => void`                                                | Jump to the next / previous match.                   |
-| `clearSearch`             | `() => void`                                                | Clear the query and highlights.                      |
-| `print`                   | `() => Promise<void>`                                       | Print the document.                                  |
-| `download`                | `(filename?: string) => Promise<void>`                      | Download the document (form values baked in).        |
+The ref is `undefined` until the viewer has mounted (`PdfViewer` loads lazily), so access it with `?.` or after `onMounted`.
+
+| Method                    | Signature                                                           | Description                                                              |
+| ------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `goToPage`                | `(page: number) => void`                                            | Scroll to and activate a page.                                           |
+| `nextPage` / `prevPage`   | `() => void`                                                        | Move one page forward / back.                                            |
+| `setZoom`                 | `(zoom: ZoomValue) => void`                                         | Set a numeric scale or a fit mode.                                       |
+| `zoomIn` / `zoomOut`      | `() => void`                                                        | Step the zoom by `zoomStep`.                                             |
+| `rotate`                  | `(direction: 'cw' \| 'ccw') => void`                                | Rotate 90° clockwise / counter-clockwise.                                |
+| `search`                  | `(query: string, options?: SearchOptions) => Promise<SearchResult>` | Run a search (resolves with the match count and the active match index). |
+| `nextMatch` / `prevMatch` | `() => void`                                                        | Jump to the next / previous match.                                       |
+| `clearSearch`             | `() => void`                                                        | Clear the query and highlights.                                          |
+| `print`                   | `() => Promise<void>`                                               | Print the document.                                                      |
+| `download`                | `(filename?: string) => Promise<void>`                              | Download the document (form values baked in).                            |
 
 ### Example
 
@@ -34,7 +36,8 @@ const viewer = ref<InstanceType<typeof PdfViewer>>()
 viewer.value.goToPage(3)
 viewer.value.setZoom('page-width')
 viewer.value.rotate('cw')
-await viewer.value.search('invoice', { caseSensitive: true })
+const result = await viewer.value.search('invoice', { caseSensitive: true })
+console.log(`${result.total} matches`)
 viewer.value.nextMatch()
 await viewer.value.download('report.pdf')
 ```

@@ -21,18 +21,17 @@ createApp(App)
 
 The options object has type `VuePdfzPluginOptions` (exported from `vue-pdfz`).
 
-| Option               | Type                | Default | Description                                                                                 |
-| -------------------- | ------------------- | ------- | ------------------------------------------------------------------------------------------- |
-| `i18nAdapter`        | `I18nAdapter`       | –       | Host i18n adapter (e.g. a [vue-i18n bridge](/guide/i18n#add-an-optional-vue-i18n-adapter)). |
-| `locale`             | `string`            | `'en'`  | Default locale code for all viewers.                                                        |
-| `messages`           | `LocaleMessagesMap` | –       | Global message overrides, keyed by locale.                                                  |
-| `registerComponents` | `boolean`           | `true`  | Register the component globally as `<PdfViewer>`.                                           |
-| `shortcuts`          | `KeyboardShortcuts` | –       | Default keyboard-shortcut overrides.                                                        |
-| `themeTokens`        | `ThemeTokens`       | –       | Global design-token overrides for all viewers.                                              |
-| `theme`              | `ThemeMode`         | –       | Default theme mode for all viewers.                                                         |
+| Option               | Type                | Default   | Description                                                                                 |
+| -------------------- | ------------------- | --------- | ------------------------------------------------------------------------------------------- |
+| `i18nAdapter`        | `I18nAdapter`       | –         | Host i18n adapter (e.g. a [vue-i18n bridge](/guide/i18n#add-an-optional-vue-i18n-adapter)). |
+| `locale`             | `string`            | `'en'`    | Default locale code for all viewers.                                                        |
+| `messages`           | `LocaleMessagesMap` | –         | Global message overrides, keyed by locale.                                                  |
+| `registerComponents` | `boolean`           | `true`    | Register the component globally as `<PdfViewer>`.                                           |
+| `shortcuts`          | `KeyboardShortcuts` | –         | Default keyboard-shortcut overrides.                                                        |
+| `theme`              | `ThemeMode`         | `'light'` | Default theme mode for all viewers.                                                         |
+| `themeTokens`        | `ThemeTokens`       | –         | Global design-token overrides for all viewers.                                              |
 
-Per-viewer props always override the plugin defaults; per-viewer `messages` and `themeTokens`
-merge over the plugin-wide ones.
+Per-viewer props always override the plugin defaults. `messages` and `themeTokens` are merged, so a per-viewer value only needs the keys it changes. `shortcuts` is not: a per-viewer `shortcuts` prop replaces the plugin-wide map entirely.
 
 ## Named export
 
