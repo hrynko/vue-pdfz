@@ -17,11 +17,11 @@ npm install vue-pdfz
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PdfViewer, type PdfDocumentMeta } from 'vue-pdfz'
+import { PdfViewer, type PdfDocumentMeta, type ZoomValue } from 'vue-pdfz'
 import 'vue-pdfz/style.css'
 
 const page = ref(1)
-const zoom = ref<'auto' | number>('auto')
+const zoom = ref<ZoomValue>('auto')
 
 function onLoaded(meta: PdfDocumentMeta) {
   console.log(`${meta.pageCount} pages`)

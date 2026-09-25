@@ -100,7 +100,7 @@ Drive the viewer imperatively through a template ref – see [Methods](/api/meth
 ```ts
 const viewer = ref<InstanceType<typeof PdfViewer>>()
 
-viewer.value.goToPage(3)
-viewer.value.setZoom('page-width')
-await viewer.value.search('invoice', { caseSensitive: true })
+viewer.value?.goToPage(3)
+viewer.value?.setZoom('page-width')
+await viewer.value?.search('invoice', { caseSensitive: true })
 ```

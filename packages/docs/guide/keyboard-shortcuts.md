@@ -9,8 +9,8 @@ The viewer is fully keyboard-operable out of the box. The table below lists the 
 | Rotate CW / CCW       | `r` / `Shift+R`                               |
 | Next / previous match | `Ctrl/⌘ G` `F3` / `Ctrl/⌘ Shift+G` `Shift+F3` |
 | Toggle thumbnails     | `F4`                                          |
-| Zoom in / out         | `Ctrl/⌘ +` / `Ctrl/⌘ -`                       |
-| Reset zoom            | `Ctrl/⌘ 0`                                    |
+| Zoom in / out         | `Ctrl/⌘ +` `+` / `Ctrl/⌘ -` `-`               |
+| Reset zoom to 100%    | `Ctrl/⌘ 0` `0`                                |
 | Toggle search         | `Ctrl/⌘ F`                                    |
 | Close overlay         | `Esc`                                         |
 | Print / download      | `Ctrl/⌘ P` / `Ctrl/⌘ S`                       |

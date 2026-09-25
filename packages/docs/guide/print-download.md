@@ -5,13 +5,13 @@ Both are available as toolbar actions, instance methods ([`print()`](/api/method
 ```ts
 const viewer = ref<InstanceType<typeof PdfViewer>>()
 
-await viewer.value.print()
-await viewer.value.download()
+await viewer.value?.print()
+await viewer.value?.download()
 ```
 
-Download streams the document with filled form values baked in when present.
+Download saves the document with any filled-in form values baked in.
 
-Turn either action off with [`enablePrint`](/api/props) / [`enableDownload`](/api/props):
+Turn either action off for the user with [`enablePrint`](/api/props) / [`enableDownload`](/api/props). This hides the toolbar button and unbinds the shortcut. The methods keep working, so you can still trigger the action from your own UI.
 
 ```vue
 <PdfViewer :enable-print="false" :enable-download="false" />

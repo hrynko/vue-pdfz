@@ -31,5 +31,5 @@ features:
     details: Configurable keyboard shortcuts, ARIA roles and labels, live announcements.
   - icon: ⚡
     title: Performance
-    details: Lazy + virtualized page rendering, tree-shakeable, and Nuxt-ready.
+    details: Lazy rendering, optional virtualization, and Nuxt-ready.
 ---
