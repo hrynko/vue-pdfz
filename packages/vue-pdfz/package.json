@@ -50,10 +50,10 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "vue-pdf-embed": "^2.1.6"
+    "vue-pdf-embed": "^2.1.7"
   },
   "peerDependencies": {
-    "pdfjs-dist": "^6.2.108",
+    "pdfjs-dist": "^6.4.299",
     "vue": "^3.4.0"
   },
   "peerDependenciesMeta": {
