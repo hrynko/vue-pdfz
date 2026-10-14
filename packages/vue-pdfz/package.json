@@ -1,6 +1,6 @@
 {
   "name": "vue-pdfz",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A customizable, i18n-ready, SSR-safe PDF viewer for Vue",
   "keywords": [
     "vue",
