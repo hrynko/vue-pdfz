@@ -1050,6 +1050,7 @@ defineExpose({
               :readonly="forms === 'readonly'"
               :rotation="rotationValue"
               :scale="scale"
+              :scroll-container="mainEl"
               :t="i18n.t"
               :text-layer="textLayer"
               @annotation-click="emit('annotation-click', $event)"

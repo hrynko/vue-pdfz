@@ -33,6 +33,7 @@ const props = withDefaults(
     readonly?: boolean
     rotation: Rotation
     scale: number
+    scrollContainer?: HTMLElement | null
     t: TranslateFn
     textLayer?: boolean
   }>(),
@@ -45,6 +46,7 @@ const props = withDefaults(
     linkRel: 'noopener noreferrer',
     linkTarget: '_blank',
     readonly: false,
+    scrollContainer: null,
     textLayer: true,
   },
 )
@@ -192,8 +194,8 @@ onMounted(() => {
         }
       },
       {
-        root: null,
-        rootMargin: `${Math.round((window.innerHeight || 800) * 2)}px 0px`,
+        root: props.scrollContainer,
+        rootMargin: '200% 0px',
         threshold: 0,
       },
     )
