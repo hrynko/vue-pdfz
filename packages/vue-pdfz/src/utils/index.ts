@@ -21,6 +21,10 @@ export function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max)
 }
 
+function copyBytes(data: ArrayBuffer | Uint8Array): Uint8Array {
+  return data instanceof ArrayBuffer ? new Uint8Array(data.slice(0)) : data.slice()
+}
+
 export function debounce<A extends unknown[]>(
   fn: (...args: A) => void,
   wait: number,
@@ -114,11 +118,8 @@ export function normalizeSource(
   if (source instanceof URL) {
     return { url: source.toString() }
   }
-  if (source instanceof ArrayBuffer) {
-    return { data: new Uint8Array(source) }
-  }
-  if (source instanceof Uint8Array) {
-    return { data: source }
+  if (source instanceof ArrayBuffer || source instanceof Uint8Array) {
+    return { data: copyBytes(source) }
   }
   if (isPdfSourceObject(source)) {
     const normalized: Record<string, unknown> = {}
@@ -129,8 +130,7 @@ export function normalizeSource(
       normalized.cMapUrl = source.cMapUrl
     }
     if (source.data != null) {
-      normalized.data =
-        source.data instanceof ArrayBuffer ? new Uint8Array(source.data) : source.data
+      normalized.data = copyBytes(source.data)
     }
     if (source.httpHeaders != null) {
       normalized.httpHeaders = source.httpHeaders

@@ -129,6 +129,16 @@ describe('utils', () => {
       expect(buffer.data).toBeInstanceOf(Uint8Array)
     })
 
+    it('copies binary data so transferring it to the worker keeps the caller data intact', () => {
+      const bytes = new Uint8Array([1, 2, 3])
+      for (const source of [bytes, bytes.buffer, { data: bytes }, { data: bytes.buffer }]) {
+        const { data } = normalizeSource(source) as { data: Uint8Array }
+        expect(data).toEqual(bytes)
+        structuredClone(data, { transfer: [data.buffer] })
+        expect(bytes.byteLength).toBe(3)
+      }
+    })
+
     it('maps config objects and applies password override', () => {
       expect(
         normalizeSource(
