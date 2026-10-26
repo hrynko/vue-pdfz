@@ -54,6 +54,7 @@ const ICON_SLOT_NAMES = [
   'icon-thumbnails',
 ] as const
 const DEFAULT_PAGE_GAP = 28 // --vue-pdfz-page-gap
+const PAGE_HOLD_IDLE_MS = 400
 
 const props = withDefaults(
   defineProps<{
@@ -171,6 +172,7 @@ const mainEl = ref<HTMLElement | null>(null)
 const page = defineModel<number>('page', { default: 1 })
 const pageGap = ref(DEFAULT_PAGE_GAP)
 const pageSize = shallowRef<{ width: number; height: number } | null>(null)
+const pagesEl = ref<HTMLElement | null>(null)
 const rootEl = ref<HTMLElement | null>(null)
 const rotation = defineModel<Rotation>('rotation', { default: 0 })
 const searchBarRef = ref<{ focus: () => void } | null>(null)
@@ -347,6 +349,7 @@ async function print(): Promise<void> {
 }
 
 function goToPage(n: number): void {
+  releaseHeldPage()
   const target = clamp(Math.round(n), 1, Math.max(1, pageCount.value))
   page.value = target
   if (isContinuous.value) {
@@ -534,6 +537,7 @@ function setZoomAnchorFromClient(clientX: number, clientY: number): void {
 
 /* ------------------------------ wheel zoom ------------------------------ */
 function handleWheel(e: WheelEvent): void {
+  releaseHeldPage()
   if (!(e.ctrlKey || e.metaKey) || !canZoomInteract.value) {
     return
   }
@@ -573,6 +577,7 @@ function touchDist(t: TouchList): number {
 }
 
 function handleTouchStart(e: TouchEvent): void {
+  releaseHeldPage()
   if (e.touches.length === 2 && canZoomInteract.value) {
     pinchStartDist = touchDist(e.touches)
     pinchStartScale = scale.value
@@ -645,25 +650,77 @@ watch(themeVars, () => void nextTick(handleResize))
 watch([doc, pageCount, rotationValue, () => page.value], measurePage, { immediate: true })
 
 /* ------------------------------- watchers ------------------------------- */
-let isDocSettling = false
 let docSettleTimer: ReturnType<typeof setTimeout> | undefined
+let heldPage = 0
+let holdObserver: ResizeObserver | null = null
+let holdTimer: ReturnType<typeof setTimeout> | undefined
+let isDocSettling = false
+
+function releaseHeldPage(): void {
+  heldPage = 0
+  holdObserver?.disconnect()
+  holdObserver = null
+  if (holdTimer) {
+    clearTimeout(holdTimer)
+    holdTimer = undefined
+  }
+}
+
+function scrollToHeldPage(): void {
+  if (!heldPage || !pageSize.value) {
+    return
+  }
+  scrollToPage(heldPage, 'instant')
+  if (holdTimer) {
+    clearTimeout(holdTimer)
+  }
+  holdTimer = setTimeout(releaseHeldPage, PAGE_HOLD_IDLE_MS)
+}
+
+function holdPage(n: number): void {
+  releaseHeldPage()
+  if (!isContinuous.value || n <= 1) {
+    return
+  }
+  heldPage = n
+  if (typeof ResizeObserver !== 'undefined') {
+    holdObserver = new ResizeObserver(scrollToHeldPage)
+    if (pagesEl.value) {
+      holdObserver.observe(pagesEl.value)
+    }
+  }
+  void nextTick(scrollToHeldPage)
+}
+
+watch(pagesEl, (el) => {
+  if (el) {
+    holdObserver?.observe(el)
+  }
+})
+
+function settleDocument(): void {
+  if (!mainEl.value) {
+    return
+  }
+  isDocSettling = true
+  mainEl.value.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+  holdPage(page.value)
+  if (docSettleTimer) {
+    clearTimeout(docSettleTimer)
+  }
+  docSettleTimer = setTimeout(() => {
+    isDocSettling = false
+  }, 200)
+}
 
 watch(doc, (newDoc, oldDoc) => {
-  if (newDoc && newDoc !== oldDoc && mainEl.value) {
-    isDocSettling = true
-    mainEl.value.scrollTop = 0
-    mainEl.value.scrollLeft = 0
-    if (docSettleTimer) {
-      clearTimeout(docSettleTimer)
-    }
-    docSettleTimer = setTimeout(() => {
-      isDocSettling = false
-    }, 200)
+  if (newDoc && newDoc !== oldDoc) {
+    settleDocument()
   }
 })
 
 watch(currentPage, (newCurrentPage) => {
-  if (isContinuous.value && newCurrentPage !== page.value) {
+  if (isContinuous.value && !heldPage && newCurrentPage !== page.value) {
     page.value = newCurrentPage
   }
 })
@@ -671,6 +728,12 @@ watch(currentPage, (newCurrentPage) => {
 watch(page, (newPage) => {
   emit('page-change', newPage)
   liveMessage.value = i18n.t('pageChanged', { page: newPage, total: pageCount.value })
+  if (heldPage && newPage !== heldPage) {
+    holdPage(newPage)
+    if (heldPage) {
+      return
+    }
+  }
   if (isContinuous.value && newPage !== currentPage.value) {
     void nextTick(() => {
       scrollToPage(newPage)
@@ -685,11 +748,12 @@ watch(scale, (newScale, oldScale) => {
   liveMessage.value = i18n.t('zoomChanged', { percent: Math.round(newScale * 100) })
   const el = mainEl.value
   if (!el || !isContinuous.value || !oldScale || isDocSettling) {
-    if (isDocSettling && el) {
-      el.scrollTop = 0
-      el.scrollLeft = 0
-    }
     zoomAnchor.value = null
+    if (heldPage) {
+      void nextTick(scrollToHeldPage)
+    } else if (isDocSettling && el) {
+      el.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    }
     void nextTick(updateVirtualPages)
     return
   }
@@ -820,6 +884,9 @@ let resizeObserver: ResizeObserver | null = null
 onMounted(() => {
   measureRoot()
   measureContainer()
+  if (doc.value) {
+    settleDocument()
+  }
   if (isClient && typeof ResizeObserver !== 'undefined') {
     resizeObserver = new ResizeObserver(handleResize)
     if (rootEl.value) {
@@ -843,6 +910,7 @@ onBeforeUnmount(() => {
   if (docSettleTimer) {
     clearTimeout(docSettleTimer)
   }
+  releaseHeldPage()
   cancelSearchScroll()
 })
 
@@ -1017,6 +1085,8 @@ defineExpose({
         <div
           ref="mainEl"
           class="vue-pdfz-main"
+          @keydown="releaseHeldPage"
+          @pointerdown="releaseHeldPage"
           @touchend="handleTouchEnd"
           @touchmove="handleTouchMove"
           @touchstart="handleTouchStart"
@@ -1024,6 +1094,7 @@ defineExpose({
         >
           <div
             v-if="doc && pageSize"
+            ref="pagesEl"
             class="vue-pdfz-pages"
             :class="{ 'vue-pdfz-pages--facing': layout === 'facing' }"
             :style="

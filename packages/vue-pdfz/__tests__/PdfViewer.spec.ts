@@ -77,6 +77,17 @@ describe('PdfViewer', () => {
     expect(links[links.length - 1]).toEqual([payload])
   })
 
+  it('opens a virtualized document at the initial page', async () => {
+    globalThis.__VPE_MOCK_DOC__ = makeFakeDoc(40)
+    const wrapper = await mountViewer({ page: 30, virtualization: true })
+    const main = wrapper.find('.vue-pdfz-main').element as HTMLElement
+    expect(main.scrollTop).toBeGreaterThan(0)
+    expect(wrapper.find('.vue-pdfz-page[data-page="30"]').exists()).toBe(true)
+    expect(wrapper.find('.vue-pdfz-page[data-page="1"]').exists()).toBe(false)
+    const updates = wrapper.emitted('update:page') ?? []
+    expect(updates.every(([n]) => n === 30)).toBe(true)
+  })
+
   it('re-emits external link clicks without navigating', async () => {
     const wrapper = await mountViewer()
     const payload = { kind: 'external', url: 'https://example.com' }

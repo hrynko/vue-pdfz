@@ -85,7 +85,7 @@ export function useVirtualPages(options: {
     currentPage.value = centerPage
   }
 
-  const scrollToPage = (page: number): void => {
+  const scrollToPage = (page: number, behavior?: ScrollBehavior): void => {
     const el = options.container.value
     if (!el) {
       return
@@ -98,7 +98,12 @@ export function useVirtualPages(options: {
     } else {
       top = pad.value + rowOf(pageNum) * unit.value
     }
-    el.scrollTop = Math.max(0, top - scrollMargin.value)
+    const target = Math.max(0, top - scrollMargin.value)
+    if (behavior && typeof el.scrollTo === 'function') {
+      el.scrollTo({ top: target, behavior })
+    } else {
+      el.scrollTop = target
+    }
     scrollTop.value = el.scrollTop
     viewportHeight.value = el.clientHeight
     compute()
