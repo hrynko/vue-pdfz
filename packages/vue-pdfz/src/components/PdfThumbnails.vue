@@ -52,8 +52,8 @@ watch(
 )
 
 watch(
-  () => props.currentPage,
-  (newCurrentPage) => {
+  [() => props.currentPage, () => itemEls.value.has(props.currentPage)],
+  ([newCurrentPage, isMounted], [, wasMounted]) => {
     const list = listEl.value
     const el = itemEls.value.get(newCurrentPage)
     if (!list || !el) {
@@ -63,11 +63,12 @@ watch(
     const max = list.scrollHeight - list.clientHeight
     const target = Math.max(0, Math.min(top, max))
     if (typeof list.scrollTo === 'function') {
-      list.scrollTo({ top: target, behavior: 'smooth' })
+      list.scrollTo({ top: target, behavior: isMounted && !wasMounted ? 'instant' : 'smooth' })
     } else {
       list.scrollTop = target
     }
   },
+  { flush: 'post' },
 )
 
 async function renderThumbnail(page: number): Promise<void> {
