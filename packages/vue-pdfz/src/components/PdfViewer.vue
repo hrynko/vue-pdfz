@@ -719,6 +719,15 @@ watch(doc, (newDoc, oldDoc) => {
   }
 })
 
+watch(pageCount, (newPageCount) => {
+  if (newPageCount > 0) {
+    const clamped = clamp(Math.round(page.value), 1, newPageCount)
+    if (clamped !== page.value) {
+      page.value = clamped
+    }
+  }
+})
+
 watch(currentPage, (newCurrentPage) => {
   if (isContinuous.value && !heldPage && newCurrentPage !== page.value) {
     page.value = newCurrentPage

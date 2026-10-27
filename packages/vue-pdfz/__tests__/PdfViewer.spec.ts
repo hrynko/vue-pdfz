@@ -88,6 +88,12 @@ describe('PdfViewer', () => {
     expect(updates.every(([n]) => n === 30)).toBe(true)
   })
 
+  it('clamps an out-of-range initial page once the page count is known', async () => {
+    const wrapper = await mountViewer({ page: 99 })
+    const updates = wrapper.emitted('update:page')!
+    expect(updates[updates.length - 1]).toEqual([3])
+  })
+
   it('re-emits external link clicks without navigating', async () => {
     const wrapper = await mountViewer()
     const payload = { kind: 'external', url: 'https://example.com' }
