@@ -23,6 +23,7 @@ const props = withDefaults(
   defineProps<{
     annotationLayer?: boolean
     doc: PDFDocumentProxy
+    estimatedSize?: { width: number; height: number } | null
     findController?: FindController
     forms?: boolean
     imageResourcesPath?: string
@@ -39,6 +40,7 @@ const props = withDefaults(
   }>(),
   {
     annotationLayer: true,
+    estimatedSize: null,
     findController: undefined,
     forms: false,
     imageResourcesPath: undefined,
@@ -66,16 +68,14 @@ const renderTick = ref(0)
 const root = ref<HTMLElement | null>(null)
 const shouldRender = ref(!props.lazy)
 
+const layoutSize = computed(() => intrinsicSize.value ?? props.estimatedSize)
+
 const cssWidth = computed(() =>
-  intrinsicSize.value
-    ? Math.max(1, Math.round(intrinsicSize.value.width * props.scale))
-    : undefined,
+  layoutSize.value ? Math.max(1, Math.round(layoutSize.value.width * props.scale)) : undefined,
 )
 
 const cssHeight = computed(() =>
-  intrinsicSize.value
-    ? Math.max(1, Math.round(intrinsicSize.value.height * props.scale))
-    : undefined,
+  layoutSize.value ? Math.max(1, Math.round(layoutSize.value.height * props.scale)) : undefined,
 )
 
 const renderWidth = computed(() =>

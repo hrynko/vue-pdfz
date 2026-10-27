@@ -1122,6 +1122,7 @@ defineExpose({
               :rotation="rotationValue"
               :scale="scale"
               :scroll-container="mainEl"
+              :estimated-size="pageSize"
               :t="i18n.t"
               :text-layer="textLayer"
               @annotation-click="emit('annotation-click', $event)"
