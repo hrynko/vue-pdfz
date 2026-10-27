@@ -94,6 +94,28 @@ describe('PdfViewer', () => {
     expect(updates[updates.length - 1]).toEqual([3])
   })
 
+  it('keeps measuring the first page while navigating a continuous layout', async () => {
+    globalThis.__VPE_MOCK_DOC__ = makeFakeDoc(3, (n) => (n === 2 ? [800, 600] : [600, 800]))
+    const wrapper = await mountViewer()
+    ;(wrapper.vm as unknown as { goToPage: (n: number) => void }).goToPage(2)
+    await flushPromises()
+    expect(wrapper.findComponent(PdfPage).props('estimatedSize')).toEqual({
+      width: 600,
+      height: 800,
+    })
+  })
+
+  it('measures the current page in the single layout', async () => {
+    globalThis.__VPE_MOCK_DOC__ = makeFakeDoc(3, (n) => (n === 2 ? [800, 600] : [600, 800]))
+    const wrapper = await mountViewer({ layout: 'single' })
+    ;(wrapper.vm as unknown as { goToPage: (n: number) => void }).goToPage(2)
+    await flushPromises()
+    expect(wrapper.findComponent(PdfPage).props('estimatedSize')).toEqual({
+      width: 800,
+      height: 600,
+    })
+  })
+
   it('re-emits external link clicks without navigating', async () => {
     const wrapper = await mountViewer()
     const payload = { kind: 'external', url: 'https://example.com' }

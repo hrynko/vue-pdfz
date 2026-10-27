@@ -602,13 +602,15 @@ function handleTouchEnd(): void {
 }
 
 /* ------------------------------- measure -------------------------------- */
+const measuredPage = computed(() => (props.layout === 'single' ? page.value : 1))
+
 async function measurePage(): Promise<void> {
   if (!doc.value || pageCount.value <= 0) {
     pageSize.value = null
     return
   }
   try {
-    const first = await doc.value.getPage(clamp(page.value, 1, pageCount.value))
+    const first = await doc.value.getPage(clamp(measuredPage.value, 1, pageCount.value))
     const viewport = first.getViewport({ scale: 1, rotation: rotationValue.value })
     pageSize.value = { width: viewport.width, height: viewport.height }
   } catch {
@@ -647,7 +649,7 @@ const handleResize = throttle(() => {
 
 watch(themeVars, () => void nextTick(handleResize))
 
-watch([doc, pageCount, rotationValue, () => page.value], measurePage, { immediate: true })
+watch([doc, pageCount, rotationValue, measuredPage], measurePage, { immediate: true })
 
 /* ------------------------------- watchers ------------------------------- */
 let docSettleTimer: ReturnType<typeof setTimeout> | undefined

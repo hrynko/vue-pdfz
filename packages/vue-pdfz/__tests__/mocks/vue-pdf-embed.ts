@@ -6,14 +6,17 @@ declare global {
   var __VPE_MOCK_RENDER_FAIL__: Error | undefined
 }
 
-export function makeFakeDoc(numPages = 3): PDFDocumentProxy {
+export function makeFakeDoc(
+  numPages = 3,
+  sizeOf: (page: number) => [width: number, height: number] = () => [600, 800],
+): PDFDocumentProxy {
   return {
     numPages,
     fingerprints: ['fake-fingerprint'],
     getPage: async (n: number) => ({
       getViewport: ({ scale = 1 }: { scale?: number; rotation?: number } = {}) => ({
-        width: 600 * scale,
-        height: 800 * scale,
+        width: sizeOf(n)[0] * scale,
+        height: sizeOf(n)[1] * scale,
       }),
       getTextContent: async () => ({
         items: [{ str: `Page ${n} content with the word vue and pdf.` }],
