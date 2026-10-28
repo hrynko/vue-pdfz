@@ -88,6 +88,16 @@ describe('PdfViewer', () => {
     expect(updates.every(([n]) => n === 30)).toBe(true)
   })
 
+  it('keeps the current page when the layout changes', async () => {
+    globalThis.__VPE_MOCK_DOC__ = makeFakeDoc(40)
+    const wrapper = await mountViewer({ page: 12, virtualization: true })
+    await wrapper.setProps({ layout: 'facing' })
+    await flushPromises()
+    expect(wrapper.find('.vue-pdfz-page[data-page="12"]').exists()).toBe(true)
+    const updates = wrapper.emitted('update:page') ?? []
+    expect(updates.every(([n]) => n === 12)).toBe(true)
+  })
+
   it('clamps an out-of-range initial page once the page count is known', async () => {
     const wrapper = await mountViewer({ page: 99 })
     const updates = wrapper.emitted('update:page')!

@@ -752,6 +752,11 @@ watch(page, (newPage) => {
   }
 })
 
+watch(
+  () => props.layout,
+  () => holdPage(page.value),
+)
+
 watch(rotationValue, (newRotationValue) => emit('rotation-change', newRotationValue))
 
 watch(scale, (newScale, oldScale) => {
