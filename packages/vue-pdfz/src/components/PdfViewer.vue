@@ -611,7 +611,7 @@ async function measurePage(): Promise<void> {
   }
   try {
     const first = await doc.value.getPage(clamp(measuredPage.value, 1, pageCount.value))
-    const viewport = first.getViewport({ scale: 1, rotation: rotationValue.value })
+    const viewport = first.getViewport({ scale: 1, rotation: rotationValue.value + first.rotate })
     pageSize.value = { width: viewport.width, height: viewport.height }
   } catch {
     pageSize.value = null

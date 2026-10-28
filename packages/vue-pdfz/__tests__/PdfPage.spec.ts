@@ -1,9 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 
 vi.mock('vue-pdf-embed', async () => await import('./mocks/vue-pdf-embed'))
 
+import { makeFakeDoc } from './mocks/vue-pdf-embed'
 import PdfPage from '../src/components/PdfPage.vue'
 
 describe('PdfPage', () => {
@@ -23,5 +24,23 @@ describe('PdfPage', () => {
     expect(placeholder.attributes('style')).toContain('width: 900px')
     expect(placeholder.attributes('style')).toContain('height: 1200px')
     expect(wrapper.find('.vue-pdfz-page').attributes('style')).toContain('min-height: 1200px')
+  })
+
+  it('sizes a page with built-in rotation as it is drawn', async () => {
+    const wrapper = mount(PdfPage, {
+      props: {
+        doc: makeFakeDoc(
+          1,
+          () => [600, 800],
+          () => 90,
+        ),
+        pageNumber: 1,
+        rotation: 90,
+        scale: 1,
+        t: (key: string) => key,
+      },
+    })
+    await flushPromises()
+    expect(wrapper.find('.vue-pdfz-page').attributes('style')).toContain('width: 600px')
   })
 })

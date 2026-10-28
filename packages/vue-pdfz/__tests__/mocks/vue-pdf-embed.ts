@@ -9,15 +9,22 @@ declare global {
 export function makeFakeDoc(
   numPages = 3,
   sizeOf: (page: number) => [width: number, height: number] = () => [600, 800],
+  rotateOf: (page: number) => number = () => 0,
 ): PDFDocumentProxy {
   return {
     numPages,
     fingerprints: ['fake-fingerprint'],
     getPage: async (n: number) => ({
-      getViewport: ({ scale = 1 }: { scale?: number; rotation?: number } = {}) => ({
-        width: sizeOf(n)[0] * scale,
-        height: sizeOf(n)[1] * scale,
-      }),
+      rotate: rotateOf(n),
+      getViewport: ({
+        scale = 1,
+        rotation = rotateOf(n),
+      }: { scale?: number; rotation?: number } = {}) => {
+        const [width, height] = sizeOf(n)
+        return rotation % 180 === 0
+          ? { width: width * scale, height: height * scale }
+          : { width: height * scale, height: width * scale }
+      },
       getTextContent: async () => ({
         items: [{ str: `Page ${n} content with the word vue and pdf.` }],
       }),

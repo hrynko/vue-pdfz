@@ -126,6 +126,19 @@ describe('PdfViewer', () => {
     })
   })
 
+  it('measures a page with built-in rotation as it is drawn', async () => {
+    globalThis.__VPE_MOCK_DOC__ = makeFakeDoc(
+      3,
+      () => [600, 800],
+      () => 90,
+    )
+    const wrapper = await mountViewer()
+    expect(wrapper.findComponent(PdfPage).props('estimatedSize')).toEqual({
+      width: 800,
+      height: 600,
+    })
+  })
+
   it('re-emits external link clicks without navigating', async () => {
     const wrapper = await mountViewer()
     const payload = { kind: 'external', url: 'https://example.com' }

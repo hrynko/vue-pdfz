@@ -115,7 +115,7 @@ watch(
   async () => {
     try {
       const page = await props.doc.getPage(props.pageNumber)
-      const viewport = page.getViewport({ scale: 1, rotation: props.rotation })
+      const viewport = page.getViewport({ scale: 1, rotation: props.rotation + page.rotate })
       intrinsicSize.value = { width: viewport.width, height: viewport.height }
     } catch {
       // keep intrinsicSize null so the page falls back to its placeholder box
