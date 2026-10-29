@@ -652,11 +652,9 @@ watch(themeVars, () => void nextTick(handleResize))
 watch([doc, pageCount, rotationValue, measuredPage], measurePage, { immediate: true })
 
 /* ------------------------------- watchers ------------------------------- */
-let docSettleTimer: ReturnType<typeof setTimeout> | undefined
 let heldPage = 0
 let holdObserver: ResizeObserver | null = null
 let holdTimer: ReturnType<typeof setTimeout> | undefined
-let isDocSettling = false
 
 function releaseHeldPage(): void {
   heldPage = 0
@@ -681,7 +679,7 @@ function scrollToHeldPage(): void {
 
 function holdPage(n: number): void {
   releaseHeldPage()
-  if (!isContinuous.value || n <= 1) {
+  if (!isContinuous.value) {
     return
   }
   heldPage = n
@@ -704,15 +702,8 @@ function settleDocument(): void {
   if (!mainEl.value) {
     return
   }
-  isDocSettling = true
   mainEl.value.scrollTo({ top: 0, left: 0, behavior: 'instant' })
   holdPage(page.value)
-  if (docSettleTimer) {
-    clearTimeout(docSettleTimer)
-  }
-  docSettleTimer = setTimeout(() => {
-    isDocSettling = false
-  }, 200)
 }
 
 watch(doc, (newDoc, oldDoc) => {
@@ -763,12 +754,10 @@ watch(scale, (newScale, oldScale) => {
   emit('zoom-change', zoom.value, newScale)
   liveMessage.value = i18n.t('zoomChanged', { percent: Math.round(newScale * 100) })
   const el = mainEl.value
-  if (!el || !isContinuous.value || !oldScale || isDocSettling) {
+  if (!el || !isContinuous.value || !oldScale || heldPage) {
     zoomAnchor.value = null
     if (heldPage) {
       void nextTick(scrollToHeldPage)
-    } else if (isDocSettling && el) {
-      el.scrollTo({ top: 0, left: 0, behavior: 'instant' })
     }
     void nextTick(updateVirtualPages)
     return
@@ -922,9 +911,6 @@ onBeforeUnmount(() => {
   handleResize.cancel()
   if (pillTimer) {
     clearTimeout(pillTimer)
-  }
-  if (docSettleTimer) {
-    clearTimeout(docSettleTimer)
   }
   releaseHeldPage()
   cancelSearchScroll()
